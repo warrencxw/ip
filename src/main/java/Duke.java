@@ -92,10 +92,10 @@ public class Duke {
 
     /**
      * Modifies the task identified by the input task number and print out a confirmation message.
-     * @param toMarkTask Determines whether to set task to done or not done
+     * @param shouldMarkTask Determines whether to set task to done or not done
      * @param taskNoString The input task number that identifies the task in "tasks"
      */
-    public static void markTask(boolean toMarkTask, String taskNoString) {
+    public static void markTask(boolean shouldMarkTask, String taskNoString) {
         // Index in Array
         int taskNo = Integer.parseInt(taskNoString) - 1;
         if (taskNo < 0 || taskNo >= inputCount) {
@@ -103,12 +103,12 @@ public class Duke {
         }
         else {
             // Check if already marked / unmarked
-            if (tasks[taskNo].getIsDone() == toMarkTask) {
-                System.out.println("Your task has already been marked as " + (toMarkTask ? "done!" : "not done!"));
+            if (tasks[taskNo].isDone() == shouldMarkTask) {
+                System.out.println("Your task has already been marked as " + (shouldMarkTask ? "done!" : "not done!"));
             }
             else {
-                tasks[taskNo].setDone(toMarkTask);
-                System.out.println("Your task is now marked as " + (toMarkTask ? "done!" : "not done!"));
+                tasks[taskNo].setDone(shouldMarkTask);
+                System.out.println("Your task is now marked as " + (shouldMarkTask ? "done!" : "not done!"));
             }
             System.out.println("> " + (taskNo + 1) + ". " + tasks[taskNo].toPrint());
         }
@@ -124,7 +124,6 @@ public class Duke {
         System.out.print(" > ");
         String input = in.nextLine();
         String[] inputs = input.split(" ");
-        int taskNo;
 
         while (inputs.length > 0 && !inputs[0].equals("bye")) {
             printDivider();
