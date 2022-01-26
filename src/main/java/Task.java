@@ -19,7 +19,7 @@ public class Task {
         return taskName;
     }
 
-    public boolean getIsDone() {
+    public boolean isDone() {
         return isDone;
     }
 
