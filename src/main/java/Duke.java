@@ -4,7 +4,7 @@ public class Duke {
     // Member attributes
     private static int inputCount = 0;
     private static final int MAX_COUNT = 100;
-    private static String[] userInputs = new String[MAX_COUNT];
+    private static Task[] tasks = new Task[MAX_COUNT];
 
     /**
      * Simply prints out a dividing line to standard output
@@ -58,8 +58,9 @@ public class Duke {
     }
 
     /**
-     * Takes the provided input string and saves it into the array "userInputs"
-     * If the number of inputs exceed MAX_COUNT, the input string will not be saved.
+     * Takes the provided input string and saves it into the array of Task "tasks"
+     * If the number of tasks exceed MAX_COUNT, the input string will not be saved.
+     * @param input Input string to be saved
      */
     public static void saveInput(String input) {
         if (inputCount >= MAX_COUNT) {
@@ -68,18 +69,48 @@ public class Duke {
                     "The last entry, \"" + input + "\", will not be added to the list.");
         }
         else {
-            userInputs[inputCount] = input;
+            tasks[inputCount] = new Task(input);
             inputCount++;
-            System.out.println("\"" + input + "\" has been added into the list.");
+            System.out.println("\"" + input + "\" has been added into the todo list.");
         }
     }
 
     /**
      *  Prints out the full list of inputs given by the user
      */
-    public static void printInputList() {
-        for (int i = 0; i < inputCount; i++) {
-            System.out.println((i + 1) + ". " + userInputs[i]);
+    public static void printToDoList() {
+        System.out.println("| Todo List |");
+        if (inputCount == 0) {
+            System.out.println("The list is empty!");
+        }
+        else {
+            for (int i = 0; i < inputCount; i++) {
+                System.out.println((i + 1) + ". " + tasks[i].toPrint());
+            }
+        }
+    }
+
+    /**
+     * Modifies the task identified by the input task number and print out a confirmation message.
+     * @param toMarkTask Determines whether to set task to done or not done
+     * @param taskNoString The input task number that identifies the task in "tasks"
+     */
+    public static void markTask(boolean toMarkTask, String taskNoString) {
+        // Index in Array
+        int taskNo = Integer.parseInt(taskNoString) - 1;
+        if (taskNo < 0 || taskNo >= inputCount) {
+            System.out.println("The input task number, \"" + (taskNo + 1) + "\" , is invalid.");
+        }
+        else {
+            // Check if already marked / unmarked
+            if (tasks[taskNo].getIsDone() == toMarkTask) {
+                System.out.println("Your task has already been marked as " + (toMarkTask ? "done!" : "not done!"));
+            }
+            else {
+                tasks[taskNo].setDone(toMarkTask);
+                System.out.println("Your task is now marked as " + (toMarkTask ? "done!" : "not done!"));
+            }
+            System.out.println("> " + (taskNo + 1) + ". " + tasks[taskNo].toPrint());
         }
     }
 
@@ -92,12 +123,33 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         System.out.print(" > ");
         String input = in.nextLine();
+        String[] inputs = input.split(" ");
+        int taskNo;
 
-        while (!input.equals("bye")) {
+        while (inputs.length > 0 && !inputs[0].equals("bye")) {
             printDivider();
-            switch (input) {
+            switch (inputs[0]) {
+            case "":
+                System.out.println("Please enter either a task to do, mark/unmark <task number> or list");
+                break;
             case "list":
-                printInputList();
+                printToDoList();
+                break;
+            case "mark":
+                if (inputs.length > 1) {
+                    markTask(true, inputs[1]);
+                }
+                else {
+                    System.out.println("Please specify a task number to mark.");
+                }
+                break;
+            case "unmark":
+                if (inputs.length > 1) {
+                    markTask(false, inputs[1]);
+                }
+                else {
+                    System.out.println("Please specify a task number to mark.");
+                }
                 break;
             default:
                 saveInput(input);
@@ -105,7 +157,9 @@ public class Duke {
             }
             printDivider();
             System.out.print(" > ");
+
             input = in.nextLine();
+            inputs = input.split(" ");
         }
         printFarewell();
     }
