@@ -10,7 +10,12 @@ mark 0
 event test3 /at test4 test5
 list
 mark 4
+mark apple
 event test7 /by test8
+list
+unmark 4
+unmark 0
+unmark apple
 list
 deadline test9 test10 /at test11
 deadline test9

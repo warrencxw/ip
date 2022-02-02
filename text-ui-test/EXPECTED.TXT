@@ -35,7 +35,7 @@ Todo "test1 test2" has been added.
  > [T][ ] test1 test2
 ____________________________________________________________
  > ____________________________________________________________
-| Todo List |
+| Task List |
 1. [T][ ] test1
 2. [T][ ] test1 test2
 ____________________________________________________________
@@ -48,7 +48,7 @@ Event "test3 test4" has been added.
  > [E][ ] test3 test4 (happening at: test5 test6)
 ____________________________________________________________
  > ____________________________________________________________
-| Todo List |
+| Task List |
 1. [T][ ] test1
 2. [T][ ] test1 test2
 3. [E][ ] test3 test4 (happening at: test5 test6)
@@ -58,17 +58,19 @@ Your task is now marked as done!
 > 3. [E][X] test3 test4 (happening at: test5 test6)
 ____________________________________________________________
  > ____________________________________________________________
-The input task number, "4" , is invalid.
+The input task number you have entered is invalid.
+Please enter a value between 1 and 3
 ____________________________________________________________
  > ____________________________________________________________
-The input task number, "0" , is invalid.
+The input task number you have entered is invalid.
+Please enter a value between 1 and 3
 ____________________________________________________________
  > ____________________________________________________________
 Event "test3" has been added.
  > [E][ ] test3 (happening at: test4 test5)
 ____________________________________________________________
  > ____________________________________________________________
-| Todo List |
+| Task List |
 1. [T][ ] test1
 2. [T][ ] test1 test2
 3. [E][X] test3 test4 (happening at: test5 test6)
@@ -79,15 +81,38 @@ Your task is now marked as done!
 > 4. [E][X] test3 (happening at: test4 test5)
 ____________________________________________________________
  > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
 Please specify a time range for the event with the delimiter "/at"
 SYNTAX: event <event name> /at <time range>
 ____________________________________________________________
  > ____________________________________________________________
-| Todo List |
+| Task List |
 1. [T][ ] test1
 2. [T][ ] test1 test2
 3. [E][X] test3 test4 (happening at: test5 test6)
 4. [E][X] test3 (happening at: test4 test5)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as not done!
+> 4. [E][ ] test3 (happening at: test4 test5)
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: test5 test6)
+4. [E][ ] test3 (happening at: test4 test5)
 ____________________________________________________________
  > ____________________________________________________________
 Please specify a deadline for the task with the delimiter "/by"
@@ -110,11 +135,11 @@ Deadline "test9 test10" has been added.
  > [D][ ] test9 test10 (due: test11)
 ____________________________________________________________
  > ____________________________________________________________
-| Todo List |
+| Task List |
 1. [T][ ] test1
 2. [T][ ] test1 test2
 3. [E][X] test3 test4 (happening at: test5 test6)
-4. [E][X] test3 (happening at: test4 test5)
+4. [E][ ] test3 (happening at: test4 test5)
 5. [D][ ] test9 test10 (due: test11 test12)
 6. [D][ ] test9 test10 (due: test11)
 ____________________________________________________________
