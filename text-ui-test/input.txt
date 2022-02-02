@@ -1,0 +1,24 @@
+todo test1
+todo test1 test2
+list
+event test3 test4
+event test3 test4 /at test5 test6
+list
+mark 3
+mark 4
+mark 0
+event test3 /at test4 test5
+list
+mark 4
+event test7 /by test8
+list
+deadline test9 test10 /at test11
+deadline test9
+deadline test9 test10 /by test11 test12
+deadline test9 test10
+deadline test9 test10 /by test11
+list
+help
+? apple
+help test
+bye
