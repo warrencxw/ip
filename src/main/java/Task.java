@@ -1,9 +1,16 @@
 public class Task {
-    private String taskName;
-    private boolean isDone;
+    // Subclasses
+    public enum TaskType {
+        TODO, DEADLINE, EVENT, DEFAULT
+    }
+
+    // Member Variables
+    protected String taskName;
+    protected boolean isDone;
 
     public Task() {
         this("");
+        this.isDone = false;
     }
 
     public Task(String taskName) {
@@ -11,23 +18,28 @@ public class Task {
         this.isDone = false;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
-    }
-
     public String getTaskName() {
         return taskName;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 
     public boolean isDone() {
         return isDone;
     }
 
-    public String toPrint() {
+    public void printAddedMessage() {
+        System.out.println("Task \"" + taskName + "\" has been added.");
+        System.out.println(" > " + toString());
+    }
+
+    @Override
+    public String toString() {
         if (isDone) {
             return "[X] " + taskName;
-        }
-        else {
+        } else {
             return "[ ] " + taskName;
         }
     }
