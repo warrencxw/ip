@@ -17,6 +17,17 @@ public class Duke {
     public static final String ERROR_MISSING_DEADLINE_DELIMITER =
             "Please specify a deadline for the task with the delimiter \"/by\"\n" +
                     "SYNTAX: deadline <deadline name> /by <due date>";
+    public static final String ERROR_INVALID_TASK_NUMBER =
+            "The input task number you have entered is invalid.";
+    public static final String ERROR_EMPTY_LIST =
+            "The task list is empty!";
+    public static final String ERROR_INPUT_LIMIT_REACHED =
+            "We have reached the limit of " + MAX_COUNT + " items that can be added to the list.\n";
+
+    // REGEX PATTERNS
+    public static final String REGEX_PATTERN_AT = "\\s/at\\s";
+    public static final String REGEX_PATTERN_BY = "\\s/by\\s";
+    public static final String REGEX_PATTERN_WHITESPACES = "\\s";
 
     // Misc Constants
     public static final String INPUT_PREPEND = " > ";
@@ -38,6 +49,34 @@ public class Duke {
                     "        Displays this help menu.\n" +
                     "  8. bye\n" +
                     "        Displays the farewell message and closes the application.";
+    public static final String RABBIT_ASCII =
+            "                      /|      __\n" +
+                    "*             +      / |   ,-~ /             +\n" +
+                    "     .              Y :|  //  /                .         *\n" +
+                    "         .          | jj /( .^     *\n" +
+                    "               *    >-\"~\"-v\"              .        *        .\n" +
+                    "*                  /       Y\n" +
+                    "   .     .        jo  o    |     .            +\n" +
+                    "                 ( ~T~     j                     +     .\n" +
+                    "      +           >._-' _./         +\n" +
+                    "               /| ;-\"~ _  l\n" +
+                    "  .           / l/ ,-\"~    \\     +\n" +
+                    "              \\//\\/      .- \\\n" +
+                    "       +       Y        /    Y\n" +
+                    "               l       I     !\n" +
+                    "               ]\\      _\\    /\"\\\n" +
+                    "              (\" ~----( ~   Y.  )\n" +
+                    "          ~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+    public static final String WARREN_ASCII =
+            ",--.   ,--.\n" +
+                    "|  |   |  | ,--,--.,--.--.,--.--. ,---. ,--,--,\n" +
+                    "|  |.'.|  |' ,-.  ||  .--'|  .--'| .-. :|      \\\n" +
+                    "|   ,'.   |\\ '-'  ||  |   |  |   \\   --.|  ||  |\n" +
+                    "'--'   '--' `--`--'`--'   `--'    `----'`--''--'\n";
+    public static final String GREETING_MESSAGE =
+            "Hello,\n" + WARREN_ASCII +
+                    "What can I do for you? (enter 'hello' for available commands!)";
+    public static final String FAREWELL_MESSAGE = "Bye. Hope to see you again soon!";
 
     /**
      * Simply prints out a dividing line to standard output
@@ -51,33 +90,9 @@ public class Duke {
      */
     public static void printGreet() {
         printDivider();
-        final String logo =
-                "                      /|      __\n" +
-                        "*             +      / |   ,-~ /             +\n" +
-                        "     .              Y :|  //  /                .         *\n" +
-                        "         .          | jj /( .^     *\n" +
-                        "               *    >-\"~\"-v\"              .        *        .\n" +
-                        "*                  /       Y\n" +
-                        "   .     .        jo  o    |     .            +\n" +
-                        "                 ( ~T~     j                     +     .\n" +
-                        "      +           >._-' _./         +\n" +
-                        "               /| ;-\"~ _  l\n" +
-                        "  .           / l/ ,-\"~    \\     +\n" +
-                        "              \\//\\/      .- \\\n" +
-                        "       +       Y        /    Y\n" +
-                        "               l       I     !\n" +
-                        "               ]\\      _\\    /\"\\\n" +
-                        "              (\" ~----( ~   Y.  )\n" +
-                        "          ~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
-        final String warrenAscii =
-                ",--.   ,--.\n" +
-                        "|  |   |  | ,--,--.,--.--.,--.--. ,---. ,--,--,\n" +
-                        "|  |.'.|  |' ,-.  ||  .--'|  .--'| .-. :|      \\\n" +
-                        "|   ,'.   |\\ '-'  ||  |   |  |   \\   --.|  ||  |\n" +
-                        "'--'   '--' `--`--'`--'   `--'    `----'`--''--'\n";
-        System.out.println(logo);
+        System.out.println(RABBIT_ASCII);
         printDivider();
-        System.out.println("Hello,\n" + warrenAscii + "What can I do for you? (enter 'hello' for available commands!)");
+        System.out.println(GREETING_MESSAGE);
         printDivider();
     }
 
@@ -85,8 +100,7 @@ public class Duke {
      * Prints out the farewell message to standard output
      */
     public static void printFarewell() {
-        printDivider();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(FAREWELL_MESSAGE);
         printDivider();
     }
 
@@ -94,23 +108,24 @@ public class Duke {
      * Takes the provided input string and saves it into the array of Task "tasks"
      * If the number of tasks exceed MAX_COUNT, the input string will not be saved.
      *
-     * @param input Input string to be saved
+     * @param input    Input string to be saved
      * @param taskType Type of task to save as
      */
     public static void saveInput(String input, Task.TaskType taskType) {
         if (inputCount >= MAX_COUNT) {
-            System.out.println("We have reached the limit of " + MAX_COUNT +
-                    " items that can be added to the list.\n" +
+            System.out.println(ERROR_INPUT_LIMIT_REACHED +
                     "The last entry, \"" + input + "\", will not be added to the list.");
         } else {
             String[] inputs;
+            boolean isTaskNameOnly;
             switch (taskType) {
             case TODO:
                 tasks[inputCount] = new Todo(input);
                 break;
             case EVENT:
-                inputs = input.split("\\s/at\\s", 2);
-                if (inputs.length < 2) {
+                inputs = input.split(REGEX_PATTERN_AT, 2);
+                isTaskNameOnly = inputs.length < 2;
+                if (isTaskNameOnly) {
                     System.out.println(ERROR_MISSING_EVENT_DELIMITER);
                     return;
                 } else {
@@ -118,8 +133,9 @@ public class Duke {
                 }
                 break;
             case DEADLINE:
-                inputs = input.split("\\s/by\\s", 2);
-                if (inputs.length < 2) {
+                inputs = input.split(REGEX_PATTERN_BY, 2);
+                isTaskNameOnly = inputs.length < 2;
+                if (isTaskNameOnly) {
                     System.out.println(ERROR_MISSING_DEADLINE_DELIMITER);
                     return;
                 } else {
@@ -138,10 +154,10 @@ public class Duke {
     /**
      * Prints out the full list of inputs given by the user
      */
-    public static void printToDoList() {
-        System.out.println("| Todo List |");
+    public static void printTaskList() {
+        System.out.println("| Task List |");
         if (inputCount == 0) {
-            System.out.println("The list is empty!");
+            System.out.println(ERROR_EMPTY_LIST);
         } else {
             for (int i = 0; i < inputCount; i++) {
                 System.out.println((i + 1) + ". " + tasks[i].toString());
@@ -157,9 +173,22 @@ public class Duke {
      */
     public static void markTask(boolean shouldMarkTask, String taskNoString) {
         // Index in Array
-        int taskNo = Integer.parseInt(taskNoString) - 1;
+        int taskNo;
+        try {
+            taskNo = Integer.parseInt(taskNoString) - 1;
+        } catch (NumberFormatException exception) {
+            System.out.println(ERROR_INVALID_TASK_NUMBER);
+            System.out.println("Please enter a value between 1 and " + inputCount);
+            return;
+        }
+
         if (taskNo < 0 || taskNo >= inputCount) {
-            System.out.println("The input task number, \"" + (taskNo + 1) + "\" , is invalid.");
+            System.out.println(ERROR_INVALID_TASK_NUMBER);
+            if (inputCount == 0) {
+                System.out.println(ERROR_EMPTY_LIST);
+            } else {
+                System.out.println("Please enter a value between 1 and " + inputCount);
+            }
         } else {
             // Check if already marked / unmarked
             if (tasks[taskNo].isDone() == shouldMarkTask) {
@@ -173,17 +202,17 @@ public class Duke {
     }
 
     /**
-     * Reads in input from standard input as long as the user does not
-     * type in "bye", and processes the input accordingly by calling other
-     * helper methods.
+     * Reads in input from standard input and processes the input to determine
+     * what operations to carry out by calling other helper methods.
      */
     public static void processInput() {
         Scanner in = new Scanner(System.in);
         System.out.print(INPUT_PREPEND);
         String input = in.nextLine();
-        String[] inputs = input.split("\\s", 2);
+        String[] inputs = input.split(REGEX_PATTERN_WHITESPACES, 2);
 
-        while (inputs.length > 0 && !inputs[0].equals("bye")) {
+        boolean isCommandOnly;
+        while (inputs.length > 0) {
             printDivider();
             switch (inputs[0]) {
             case "": // EMPTY INPUT
@@ -194,17 +223,19 @@ public class Duke {
                 System.out.println(HELP_MESSAGE);
                 break;
             case "list": // LIST OUT TASK LIST
-                printToDoList();
+                printTaskList();
                 break;
             case "mark": // MARK TASK AS DONE
-                if (inputs.length < 2) {
+                isCommandOnly = inputs.length < 2;
+                if (isCommandOnly) {
                     System.out.println(ERROR_MISSING_TASK_NO);
                 } else {
                     markTask(true, inputs[1]);
                 }
                 break;
             case "unmark": // MARK TASK AS NOT DONE
-                if (inputs.length < 2) {
+                isCommandOnly = inputs.length < 2;
+                if (isCommandOnly) {
                     System.out.println(ERROR_MISSING_TASK_NO);
                 } else {
                     markTask(false, inputs[1]);
@@ -219,6 +250,9 @@ public class Duke {
             case "event": // CREATE NEW EVENT
                 saveInput(inputs[1], Task.TaskType.EVENT);
                 break;
+            case "bye":
+                printFarewell();
+                return;
             default:
                 saveInput(input, Task.TaskType.DEFAULT);
                 break;
@@ -227,9 +261,8 @@ public class Duke {
             System.out.print(INPUT_PREPEND);
 
             input = in.nextLine();
-            inputs = input.split("\\s", 2);
+            inputs = input.split(REGEX_PATTERN_WHITESPACES, 2);
         }
-        printFarewell();
     }
 
     public static void main(String[] args) {
