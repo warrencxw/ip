@@ -159,7 +159,7 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye
+  8. bye / exit / quit
         Displays the farewell message and closes the application.
 ____________________________________________________________
  > ____________________________________________________________
@@ -178,7 +178,7 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye
+  8. bye / exit / quit
         Displays the farewell message and closes the application.
 ____________________________________________________________
  > ____________________________________________________________
@@ -197,7 +197,7 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye
+  8. bye / exit / quit
         Displays the farewell message and closes the application.
 ____________________________________________________________
  > ____________________________________________________________
