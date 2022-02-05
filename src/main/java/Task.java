@@ -1,9 +1,4 @@
 public class Task {
-    // Subclasses
-    public enum TaskType {
-        TODO, DEADLINE, EVENT, DEFAULT
-    }
-
     // Member Variables
     protected String taskName;
     protected boolean isDone;
