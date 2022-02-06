@@ -1,4 +1,7 @@
-import java.util.Locale;
+package duke;
+
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class Duke {

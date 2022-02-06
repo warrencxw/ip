@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.TaskList;
+
 public class Display {
     // Types of errors
     public enum ErrorType {
@@ -8,7 +12,7 @@ public class Display {
 
     // Error Messages
     public static final String ERROR_MISSING_TASK_NO =
-            "Please specify a task number to mark.";
+            "Please specify a task number to mark/unmark.";
     public static final String ERROR_INVALID_TASK_NO =
             "The input task number you have entered is invalid.";
     public static final String ERROR_EMPTY_INPUT =
