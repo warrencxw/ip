@@ -1,6 +1,11 @@
 todo test1
 todo test1 test2
 list
+event 
+event  
+event /at
+event /at test3
+event at test3
 event test3 test4
 event test3 test4 /at test5 test6
 list
@@ -22,6 +27,12 @@ deadline test9
 deadline test9 test10 /by test11 test12
 deadline test9 test10
 deadline test9 test10 /by test11
+deadline 
+deadline  
+deadline /by
+deadline /by test12 test13
+deadline test12 by test13
+deadline test12 /by test13 /by test14
 list
 help
 ? apple
