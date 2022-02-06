@@ -1,3 +1,8 @@
+package duke.task;
+
+import duke.Display;
+import duke.DukeException;
+
 public class TaskList {
     // Member attributes
     private static int inputCount = 0;
@@ -216,7 +221,7 @@ public class TaskList {
      * @param shouldMarkTask Determines whether to set task to done or not done
      * @param taskNoString   The input task number string that identifies the task in "tasks"
      */
-    public static void markTask(boolean shouldMarkTask, String taskNoString) {
+    private static void markTask(boolean shouldMarkTask, String taskNoString) {
         // Check if task number is numerical
         int taskNo;
         try {
@@ -258,7 +263,7 @@ public class TaskList {
      * @param shouldMarkTask Determines whether to set task to done or not done
      * @param inputs         List of input tokens provided by the user
      */
-    static void processInputAndMarkTask(boolean shouldMarkTask, String[] inputs) {
+    public static void processInputAndMarkTask(boolean shouldMarkTask, String[] inputs) {
         boolean isCommandOnly = inputs.length < 2;
         if (isCommandOnly) {
             Display.printError(Display.ErrorType.MISSING_TASK_NO);
