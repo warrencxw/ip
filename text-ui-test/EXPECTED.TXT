@@ -40,6 +40,34 @@ ____________________________________________________________
 2. [T][ ] test1 test2
 ____________________________________________________________
  > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <time range>
+        deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <time range>
+        deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <time range>
+        deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <time range>
+        deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a time range for the event with the delimiter "/at"
+SYNTAX: event <event name> /at <time range>
+____________________________________________________________
+ > ____________________________________________________________
 Please specify a time range for the event with the delimiter "/at"
 SYNTAX: event <event name> /at <time range>
 ____________________________________________________________
@@ -135,6 +163,38 @@ Deadline "test9 test10" has been added.
  > [D][ ] test9 test10 (due: test11)
 ____________________________________________________________
  > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <time range>
+        deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <time range>
+        deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <time range>
+        deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <time range>
+        deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a deadline for the task with the delimiter "/by"
+SYNTAX: deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Deadline "test12" has been added.
+ > [D][ ] test12 (due: test13 /by test14)
+____________________________________________________________
+ > ____________________________________________________________
 | Task List |
 1. [T][ ] test1
 2. [T][ ] test1 test2
@@ -142,6 +202,7 @@ ____________________________________________________________
 4. [E][ ] test3 (happening at: test4 test5)
 5. [D][ ] test9 test10 (due: test11 test12)
 6. [D][ ] test9 test10 (due: test11)
+7. [D][ ] test12 (due: test13 /by test14)
 ____________________________________________________________
  > ____________________________________________________________
 | AVAILABLE COMMANDS |
@@ -159,7 +220,7 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye
+  8. bye / exit / quit
         Displays the farewell message and closes the application.
 ____________________________________________________________
  > ____________________________________________________________
@@ -178,7 +239,7 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye
+  8. bye / exit / quit
         Displays the farewell message and closes the application.
 ____________________________________________________________
  > ____________________________________________________________
@@ -197,7 +258,7 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye
+  8. bye / exit / quit
         Displays the farewell message and closes the application.
 ____________________________________________________________
  > ____________________________________________________________
