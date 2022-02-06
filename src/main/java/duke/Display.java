@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.TaskList;
+
 public class Display {
     // Types of errors
     public enum ErrorType {
