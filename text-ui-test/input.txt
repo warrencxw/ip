@@ -1,6 +1,10 @@
+mark 1
+unmark 1
 todo test1
 todo test1 test2
 list
+mark
+unmark
 event 
 event  
 event /at
