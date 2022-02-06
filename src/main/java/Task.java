@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     // Member Variables
     protected String taskName;
     protected boolean isDone;
@@ -25,10 +25,7 @@ public class Task {
         return isDone;
     }
 
-    public void printAddedMessage() {
-        System.out.println("Task \"" + taskName + "\" has been added.");
-        System.out.println(" > " + toString());
-    }
+    public abstract void printAddedMessage();
 
     @Override
     public String toString() {

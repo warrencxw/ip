@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
@@ -15,13 +16,13 @@ public class Duke {
     public static void processInputLoop() {
         Scanner in = new Scanner(System.in);
         System.out.print(INPUT_PREPEND);
-        String input = in.nextLine();
+        String input = in.nextLine().trim();
         String[] inputs = input.split(REGEX_PATTERN_WHITESPACES, 2);
 
         boolean isCommandOnly;
         while (inputs.length > 0) {
             Display.printDivider();
-            switch (inputs[0]) {
+            switch (inputs[0].toLowerCase()) {
             // EMPTY INPUT
             case "":
                 Display.printError(Display.ErrorType.EMPTY_INPUT);
@@ -69,7 +70,7 @@ public class Duke {
             Display.printDivider();
             System.out.print(INPUT_PREPEND);
 
-            input = in.nextLine();
+            input = in.nextLine().trim();
             inputs = input.split(REGEX_PATTERN_WHITESPACES, 2);
         }
     }
