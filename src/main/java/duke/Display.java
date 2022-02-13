@@ -1,13 +1,11 @@
 package duke;
 
-import duke.task.TaskList;
-
 public class Display {
     // Types of errors
     public enum ErrorType {
         MISSING_TASK_NO, INVALID_TASK_NO, EMPTY_INPUT, EMPTY_TASK_NAME,
         MISSING_EVENT_DELIMITER, MISSING_DEADLINE_DELIMITER,
-        EMPTY_TASK_LIST, INPUT_LIMIT_REACHED, COMMAND_NOT_RECOGNISED
+        EMPTY_TASK_LIST, COMMAND_NOT_RECOGNISED
     }
 
     // Error Messages
@@ -30,8 +28,6 @@ public class Display {
                     + "SYNTAX: deadline <deadline name> /by <due date>";
     public static final String ERROR_EMPTY_TASK_LIST =
             "The task list is empty!";
-    public static final String ERROR_INPUT_LIMIT_REACHED =
-            "We have reached the limit of " + TaskList.MAX_COUNT + " items that can be added to the list.";
     public static final String ERROR_COMMAND_NOT_RECOGNISED =
             "The input that you have entered is not recognised, enter 'help' to see available commands.";
 
@@ -140,9 +136,6 @@ public class Display {
             break;
         case EMPTY_TASK_LIST:
             System.out.println(ERROR_EMPTY_TASK_LIST);
-            break;
-        case INPUT_LIMIT_REACHED:
-            System.out.println(ERROR_INPUT_LIMIT_REACHED);
             break;
         case COMMAND_NOT_RECOGNISED:
             System.out.println(ERROR_COMMAND_NOT_RECOGNISED);
