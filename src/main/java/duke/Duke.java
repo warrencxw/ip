@@ -20,6 +20,7 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         System.out.print(INPUT_PREPEND);
         String input = in.nextLine().trim();
+        // inputs: Array of Strings { command, furtherArguments }
         String[] inputs = input.split(REGEX_PATTERN_WHITESPACES, 2);
 
         boolean isCommandOnly;
@@ -58,6 +59,11 @@ public class Duke {
             // CREATE NEW EVENT
             case "event":
                 TaskList.saveInputAsTask(inputs, TaskList.TaskType.EVENT);
+                break;
+            // DELETE TASK, FALLTHROUGH : IDENTICAL COMMANDS
+            case "delete":
+            case "remove":
+                TaskList.processInputAndDeleteTask(inputs);
                 break;
             // CONCLUDE SESSION, FALLTHROUGH : IDENTICAL COMMANDS
             case "exit":
