@@ -3,11 +3,11 @@ package duke.task;
 import duke.Display;
 import duke.DukeException;
 
+import java.util.ArrayList;
+
 public class TaskList {
     // Member attributes
-    private static int inputCount = 0;
-    public static final int MAX_COUNT = 100;
-    private static final Task[] tasks = new Task[MAX_COUNT];
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     // Regex patterns
     public static final String REGEX_PATTERN_AT = "\\s/at\\s";
@@ -44,29 +44,23 @@ public class TaskList {
         }
         String taskDetailString = inputs[1].trim();
 
-        if (inputCount >= MAX_COUNT) {
-            Display.printError(Display.ErrorType.INPUT_LIMIT_REACHED);
-            System.out.println("The last entry, \"" + taskDetailString + "\", will not be added to the list.");
-            return;
-        }
-
         switch (taskType) {
         case TODO:
-            tasks[inputCount] = new Todo(taskDetailString);
+            tasks.add(new Todo(taskDetailString));
             break;
         // FALLTHROUGH: TASKTYPE DIFFERENTIATION IN METHOD.
         case EVENT:
         case DEADLINE:
-            tasks[inputCount] = getTaskFromInputStringWithDelimiters(taskDetailString, taskType);
-            if (tasks[inputCount] == null) {
+            Task newTask = getTaskFromInputStringWithDelimiters(taskDetailString, taskType);
+            if (newTask == null) {
                 return;
             }
+            tasks.add(newTask);
             break;
         default:
             return;
         }
-        tasks[inputCount].printAddedMessage();
-        inputCount++;
+        tasks.get(tasks.size() - 1).printAddedMessage();
     }
 
     /**
@@ -173,8 +167,7 @@ public class TaskList {
      * @param taskType         Either TaskType.EVENT or TaskType.DEADLINE
      * @return Returns a String[] object containing the task name in the first index [0] and
      * the time specification in the second index [1].
-     * Returns null and prints an error message if task name, delimiter or time specification
-     * is missing
+     * Returns null and prints an error message if task name, delimiter or time specification is missing
      * @throws DukeException If taskType is NOT TaskType.EVENT or TaskType.DEADLINE
      */
     private static String[] getTaskDetailTokens(String taskDetailString, TaskType taskType) throws DukeException {
@@ -205,13 +198,45 @@ public class TaskList {
      */
     public static void printTaskList() {
         System.out.println("| Task List |");
-        if (inputCount == 0) {
+        if (tasks.size() == 0) {
             Display.printError(Display.ErrorType.EMPTY_TASK_LIST);
         } else {
-            for (int i = 0; i < inputCount; i++) {
-                System.out.println((i + 1) + ". " + tasks[i].toString());
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i + 1) + ". " + tasks.get(i).toString());
             }
         }
+    }
+
+    /**
+     * Reads in a String object representing the task number and parses the String to get the numeric index.
+     * Returns an integer representing the index of the task.
+     *
+     * @param taskNoString The input task number string that identifies the task in "tasks"
+     * @return Returns an integer in [0, (tasks.size()-1)]
+     * @throws DukeException If taskNoString is not a valid integer, tasks is empty or
+     *                       taskNoString is not within [0, (tasks.size()-1)]
+     */
+    private static int getTaskIndexFromString(String taskNoString) throws DukeException {
+        int taskNo;
+        try {
+            // -1 to get task index for 0-indexing
+            taskNo = Integer.parseInt(taskNoString) - 1;
+        } catch (NumberFormatException exception) {
+            Display.printError(Display.ErrorType.INVALID_TASK_NO);
+            throw new DukeException("Please enter a value between 1 and " + tasks.size());
+        }
+
+        // Check if index is within array limits
+        boolean isTaskNoOutOfRange = taskNo < 0 || taskNo >= tasks.size();
+        if (isTaskNoOutOfRange) {
+            Display.printError(Display.ErrorType.INVALID_TASK_NO);
+            if (tasks.size() == 0) {
+                throw new DukeException(Display.ERROR_EMPTY_TASK_LIST);
+            } else {
+                throw new DukeException("Please enter a value between 1 and " + tasks.size());
+            }
+        }
+        return taskNo;
     }
 
     /**
@@ -225,34 +250,20 @@ public class TaskList {
         // Check if task number is numerical
         int taskNo;
         try {
-            // -1 to get array index
-            taskNo = Integer.parseInt(taskNoString) - 1;
-        } catch (NumberFormatException exception) {
-            Display.printError(Display.ErrorType.INVALID_TASK_NO);
-            System.out.println("Please enter a value between 1 and " + inputCount);
-            return;
-        }
-
-        // Check if index is within array limits
-        boolean isTaskNoOutOfRange = taskNo < 0 || taskNo >= inputCount;
-        if (isTaskNoOutOfRange) {
-            Display.printError(Display.ErrorType.INVALID_TASK_NO);
-            if (inputCount == 0) {
-                Display.printError(Display.ErrorType.EMPTY_TASK_LIST);
-            } else {
-                System.out.println("Please enter a value between 1 and " + inputCount);
-            }
+            taskNo = getTaskIndexFromString(taskNoString);
+        } catch (DukeException exception) {
+            System.out.println(exception.getMessage());
             return;
         }
 
         // Check if already marked / unmarked
-        if (tasks[taskNo].isDone() == shouldMarkTask) {
+        if (tasks.get(taskNo).isDone() == shouldMarkTask) {
             System.out.println("Your task has already been marked as " + (shouldMarkTask ? "done!" : "not done!"));
         } else {
-            tasks[taskNo].setDone(shouldMarkTask);
+            tasks.get(taskNo).setDone(shouldMarkTask);
             System.out.println("Your task is now marked as " + (shouldMarkTask ? "done!" : "not done!"));
         }
-        System.out.println("> " + (taskNo + 1) + ". " + tasks[taskNo].toString());
+        System.out.println("> " + (taskNo + 1) + ". " + tasks.get(taskNo).toString());
     }
 
     /**
@@ -270,5 +281,36 @@ public class TaskList {
         } else {
             markTask(shouldMarkTask, inputs[1]);
         }
+    }
+
+    /**
+     * Checks if there are arguments in the 'delete' command and if the arguments are valid (integer and within
+     * range of [1, tasks.size()]). If arguments are valid, deletes the task identified by the argument and prints
+     * a success message onto standard output. Prints an error message and does not modify tasks otherwise. 
+     *
+     * @param inputs List of input tokens provided by the user
+     */
+    public static void processInputAndDeleteTask(String[] inputs) {
+        boolean isCommandOnly = inputs.length < 2;
+        if (isCommandOnly) {
+            Display.printError(Display.ErrorType.MISSING_TASK_NO);
+            return;
+        }
+
+        int taskNo;
+        String taskNoString = inputs[1];
+        try {
+            taskNo = getTaskIndexFromString(taskNoString);
+        } catch (DukeException exception) {
+            System.out.println(exception.getMessage());
+            return;
+        }
+
+        String successMessage =
+                "I have removed the following task for you:\n"
+                        + "> " + (taskNo + 1) + ". " + tasks.get(taskNo).toString() + "\n"
+                        + "You now have " + (tasks.size() - 1) + " tasks in your list.";
+        tasks.remove(taskNo);
+        System.out.println(successMessage);
     }
 }

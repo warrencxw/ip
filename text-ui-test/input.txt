@@ -1,5 +1,6 @@
 mark 1
 unmark 1
+delete 3
 todo test1
 todo test1 test2
 list
@@ -41,4 +42,11 @@ list
 help
 ? apple
 help test
+delete 0
+delete 8
+delete apple
+delete 7
+list
+delete 3
+list
 bye
