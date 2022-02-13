@@ -14,6 +14,11 @@ public abstract class Task {
         this.taskName = taskName;
         this.isDone = false;
     }
+    
+    public Task(String taskName, Boolean isDone) {
+        this.taskName = taskName;
+        this.isDone = isDone;
+    } 
 
     public String getTaskName() {
         return taskName;
@@ -28,6 +33,8 @@ public abstract class Task {
     }
 
     public abstract void printAddedMessage();
+    
+    public abstract String getSavableCSVString();
 
     @Override
     public String toString() {
