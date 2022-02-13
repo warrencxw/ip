@@ -313,4 +313,49 @@ public class TaskList {
         tasks.remove(taskNo);
         System.out.println(successMessage);
     }
+    
+    public static String[] getSavableCSVStrings() {
+        String[] csvStrings = new String[tasks.size()];
+        for (int i = 0; i < tasks.size(); i++) {
+            csvStrings[i] = tasks.get(i).getSavableCSVString();
+        }
+        return csvStrings;
+    }
+    
+    public static boolean isValidCSVRecord(String[] record) {
+        boolean isInvalidRecordLength = record.length < 3 || record.length > 4;
+        if (isInvalidRecordLength) {
+            return false;
+        }
+        boolean isValidTask =
+                (record[0].equalsIgnoreCase("T") && record.length == 3)
+                        || (record[0].equalsIgnoreCase("E") && record.length == 4)
+                        || (record[0].equalsIgnoreCase("D") && record.length == 4);
+        boolean isValidMarking = 
+                record[1].equalsIgnoreCase("Y") || record[1].equalsIgnoreCase("N");
+        return isValidTask && isValidMarking;
+    }
+    
+    public static void addTaskFromCSVRecord(String[] record) throws DukeException {
+        if (!isValidCSVRecord(record)) {
+            // TODO: PRINT INVALID RECORD ERROR MESSAGE, CREATE MALFORMED RECORD ERROR MESSAGE
+            throw new DukeException("Malformed Record"); 
+        }
+        // record = { taskType {T,E,D}, marked {Y,N}, name, dueDate/eventTime(if D/E)}
+        
+        boolean marked = record[1].equalsIgnoreCase("Y");
+        switch (record[0]) {
+        case "T":
+            tasks.add(new Todo(record[2], marked));
+            break;
+        case "E":
+            tasks.add(new Event(record[2], marked, record[3]));
+            break;
+        case "D":
+            tasks.add(new Deadline(record[2], marked, record[3]));
+            break;
+        default:
+            throw new DukeException("Malformed Record");
+        }
+    }
 }
