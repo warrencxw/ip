@@ -35,6 +35,10 @@ The input task number you have entered is invalid.
 The task list is empty!
 ____________________________________________________________
  > ____________________________________________________________
+The input task number you have entered is invalid.
+The task list is empty!
+____________________________________________________________
+ > ____________________________________________________________
 Todo "test1" has been added.
  > [T][ ] test1
 ____________________________________________________________
@@ -274,6 +278,45 @@ ____________________________________________________________
         Displays this help menu.
   8. bye / exit / quit
         Displays the farewell message and closes the application.
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 7
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 7
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 7
+____________________________________________________________
+ > ____________________________________________________________
+I have removed the following task for you:
+> 7. [D][ ] test12 (due: test13 /by test14)
+You now have 6 tasks in your list.
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: test5 test6)
+4. [E][ ] test3 (happening at: test4 test5)
+5. [D][ ] test9 test10 (due: test11 test12)
+6. [D][ ] test9 test10 (due: test11)
+____________________________________________________________
+ > ____________________________________________________________
+I have removed the following task for you:
+> 3. [E][X] test3 test4 (happening at: test5 test6)
+You now have 5 tasks in your list.
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][ ] test3 (happening at: test4 test5)
+4. [D][ ] test9 test10 (due: test11 test12)
+5. [D][ ] test9 test10 (due: test11)
 ____________________________________________________________
  > ____________________________________________________________
 Bye. Hope to see you again soon!
