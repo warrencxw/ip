@@ -71,6 +71,10 @@ public class Duke {
             case "delete":
             case "remove":
                 TaskList.processInputAndDeleteTask(inputs);
+                SaveManager.saveChanges();
+                break;
+            case "clear":
+                TaskList.removeAllTasks(in);
                 break;
             // CONCLUDE SESSION, FALLTHROUGH : IDENTICAL COMMANDS
             case "exit":

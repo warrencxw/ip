@@ -27,6 +27,10 @@ Hello,
 What can I do for you? (enter 'hello' for available commands!)
 ____________________________________________________________
  > ____________________________________________________________
+Are you really sure you want to delete all available tasks? Type 'Y' to confirm.
+All tasks have been cleared.
+____________________________________________________________
+ > ____________________________________________________________
 The input task number you have entered is invalid.
 The task list is empty!
 ____________________________________________________________
@@ -314,6 +318,18 @@ ____________________________________________________________
 | Task List |
 1. [T][ ] test1
 2. [T][ ] test1 test2
+3. [E][ ] test3 (happening at: test4 test5)
+4. [D][ ] test9 test10 (due: test11 test12)
+5. [D][ ] test9 test10 (due: test11)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as done!
+> 2. [T][X] test1 test2
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][X] test1 test2
 3. [E][ ] test3 (happening at: test4 test5)
 4. [D][ ] test9 test10 (due: test11 test12)
 5. [D][ ] test9 test10 (due: test11)

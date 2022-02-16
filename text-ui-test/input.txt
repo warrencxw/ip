@@ -1,3 +1,5 @@
+clear
+Y
 mark 1
 unmark 1
 delete 3
@@ -48,5 +50,7 @@ delete apple
 delete 7
 list
 delete 3
+list
+mark 2
 list
 bye

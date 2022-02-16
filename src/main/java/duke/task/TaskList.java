@@ -6,6 +6,7 @@ import duke.DukeException;
 import duke.SaveManager;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TaskList {
     // Member attributes
@@ -30,6 +31,12 @@ public class TaskList {
             "The save file '" + SaveManager.SAVE_FILE_NAME + "' contains one or more malformed CSV records.\n"
                     + "The loading process will be halted. Please quit immediately and rectify any errors\n"
                     + "in the file to prevent the save file from being overwritten.";
+    
+    // Misc messages
+    public static final String WARNING_DELETION = 
+            "Are you really sure you want to delete all available tasks? Type 'Y' to confirm.";
+    public static final String TASK_DELETED_CONFIRMATION = 
+            "All tasks have been cleared.";
 
     // Subclasses
     public enum TaskType {
@@ -393,5 +400,18 @@ public class TaskList {
         default:
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
+    }
+
+    /**
+     * Clears all the tasks that has been saved thus far. 
+     */
+    public static void removeAllTasks(Scanner in) {
+        System.out.println(WARNING_DELETION);
+        String input = in.nextLine().trim();
+        if (!input.equalsIgnoreCase("Y")) {
+            return;
+        }
+        tasks.clear();
+        System.out.println(TASK_DELETED_CONFIRMATION);
     }
 }
