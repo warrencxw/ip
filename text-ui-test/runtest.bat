@@ -19,3 +19,4 @@ java -classpath ..\bin duke.Duke < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
 FC ACTUAL.TXT EXPECTED.TXT
+FC data\save.csv EXPECTED_SAVE.CSV

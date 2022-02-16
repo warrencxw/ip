@@ -14,6 +14,16 @@ public class SaveManager {
     private static final String PATH_STRING_SAVE_FILE = PATH_STRING_DATA_FOLDER + File.separator + SAVE_FILE_NAME;
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
+    // TODO: CREATE A TEST FOR LOAD
+
+    /**
+     * Checks if a save file already exist on the system
+     * If toCreate is true, creates the file structure and save file for saving TaskList data as it updates
+     * 
+     * @param toCreate Tells the method whether to create the files for saving or only to check if save exists
+     * @return Returns true if the save file exists, false otherwise
+     * @throws IOException If File.exists(), File.mkdir(), File.createNewFile() faces exceptions.
+     */
     private static boolean saveExists(boolean toCreate) throws IOException {
         File directory = new File(PATH_STRING_DATA_FOLDER);
         if (!directory.exists()) {
@@ -43,6 +53,9 @@ public class SaveManager {
         return true;
     }
 
+    /**
+     * Loads from save.csv, all tasks that were previously saved, into TaskList
+     */
     static void loadSave() {
         boolean saveExists = false;
         try {
@@ -81,6 +94,9 @@ public class SaveManager {
         }
     }
 
+    /**
+     * Save into save.csv, all tasks that are currently in TaskList, as a CSV file
+     */
     static void saveChanges() {
         boolean saveExists;
         try {
