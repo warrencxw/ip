@@ -32,8 +32,16 @@ public abstract class Task {
         return isDone;
     }
 
+    /**
+     * Prints a message to indicate that the task has been successfully added.
+     */
     public abstract void printAddedMessage();
-    
+
+    /**
+     * Convert Task object information into a savable CSV format
+     * 
+     * @return Returns a String object containing the CSV record representing the Task to be saved.
+     */
     public abstract String getSavableCSVString();
 
     @Override

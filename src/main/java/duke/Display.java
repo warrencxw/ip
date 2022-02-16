@@ -1,11 +1,14 @@
 package duke;
 
+import java.sql.SQLOutput;
+
 public class Display {
     // Types of errors
     public enum ErrorType {
         MISSING_TASK_NO, INVALID_TASK_NO, EMPTY_INPUT, EMPTY_TASK_NAME,
         MISSING_EVENT_DELIMITER, MISSING_DEADLINE_DELIMITER,
-        EMPTY_TASK_LIST, COMMAND_NOT_RECOGNISED
+        EMPTY_TASK_LIST, COMMAND_NOT_RECOGNISED, CSV_DELIMITER_IN_TASK,
+        FILE_CREATION_FAILED, SAVE_LOAD_FAILED, SAVE_WRITE_FAILED
     }
 
     // Error Messages
@@ -30,6 +33,17 @@ public class Display {
             "The task list is empty!";
     public static final String ERROR_COMMAND_NOT_RECOGNISED =
             "The input that you have entered is not recognised, enter 'help' to see available commands.";
+    public static final String ERROR_CSV_DELIMITER_IN_TASK =
+            "The delimiter '" + Duke.CSV_DELIMITER + "' is not allowed to be included in any part of the Task.\n"
+                    + "Please try again after omitting it!";
+    public static final String ERROR_FILE_CREATION_FAILED = 
+            "The save system was unable to create the save file for this program. Any tasks created will not be saved.";
+    public static final String ERROR_SAVE_LOAD_FAILED = 
+            "The save system attempted to look for a save file, but encountered errors in the process of doing so.\n"
+                    + "The program will proceed with running as if there was no save files.";
+    public static final String ERROR_SAVE_WRITE_FAILED =
+            "The save system attempted to write to a save file, but encountered errors in the process of doing so.\n"
+                    + "The program will proceed with running without saving.";
 
     // Text Constants
     public static final String RABBIT_ASCII =
@@ -139,6 +153,18 @@ public class Display {
             break;
         case COMMAND_NOT_RECOGNISED:
             System.out.println(ERROR_COMMAND_NOT_RECOGNISED);
+            break;
+        case CSV_DELIMITER_IN_TASK:
+            System.out.println(ERROR_CSV_DELIMITER_IN_TASK);
+            break;
+        case FILE_CREATION_FAILED:
+            System.out.println(ERROR_FILE_CREATION_FAILED);
+            break;
+        case SAVE_LOAD_FAILED:
+            System.out.println(ERROR_SAVE_LOAD_FAILED);
+            break;
+        case SAVE_WRITE_FAILED:
+            System.out.println(ERROR_SAVE_WRITE_FAILED);
             break;
         }
     }
