@@ -24,7 +24,11 @@ Hello,
 |  |.'.|  |' ,-.  ||  .--'|  .--'| .-. :|      \
 |   ,'.   |\ '-'  ||  |   |  |   \   --.|  ||  |
 '--'   '--' `--`--'`--'   `--'    `----'`--''--'
-What can I do for you? (enter 'hello' for available commands!)
+What can I do for you? (enter 'help' for available commands!)
+____________________________________________________________
+ > ____________________________________________________________
+Are you really sure you want to delete all available tasks? Type 'Y' to confirm.
+Deletion has been aborted.
 ____________________________________________________________
  > ____________________________________________________________
 Are you really sure you want to delete all available tasks? Type 'Y' to confirm.
@@ -56,10 +60,10 @@ ____________________________________________________________
 2. [T][ ] test1 test2
 ____________________________________________________________
  > ____________________________________________________________
-Please specify a task number to mark/unmark.
+Please specify a task number.
 ____________________________________________________________
  > ____________________________________________________________
-Please specify a task number to mark/unmark.
+Please specify a task number.
 ____________________________________________________________
  > ____________________________________________________________
 Please enter a name for your task.
@@ -242,7 +246,9 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye / exit / quit
+  8. clear
+        Clears all tasks that have been saved thus far after a confirmation message.
+  9. bye / exit / quit
         Displays the farewell message and closes the application.
 ____________________________________________________________
  > ____________________________________________________________
@@ -261,7 +267,9 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye / exit / quit
+  8. clear
+        Clears all tasks that have been saved thus far after a confirmation message.
+  9. bye / exit / quit
         Displays the farewell message and closes the application.
 ____________________________________________________________
  > ____________________________________________________________
@@ -280,8 +288,13 @@ ____________________________________________________________
         Marks the entry as incomplete, see list for entry numbers.
   7. help / ?
         Displays this help menu.
-  8. bye / exit / quit
+  8. clear
+        Clears all tasks that have been saved thus far after a confirmation message.
+  9. bye / exit / quit
         Displays the farewell message and closes the application.
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a task number.
 ____________________________________________________________
  > ____________________________________________________________
 The input task number you have entered is invalid.
