@@ -7,6 +7,7 @@ import duke.command.DeleteCommand;
 import duke.command.EmptyCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkTaskCommand;
@@ -119,6 +120,8 @@ public class Parser {
         // CREATE NEW EVENT
         case "event":
             return new EventCommand(commandArgs);
+        case "find":
+            return new FindCommand(commandArgs);
         // DELETE TASK, FALLTHROUGH : IDENTICAL COMMANDS
         case "delete":
         case "remove":
