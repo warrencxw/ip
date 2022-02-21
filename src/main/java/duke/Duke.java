@@ -1,10 +1,18 @@
 package duke;
 
+import duke.command.Command;
+import duke.command.ExitCommand;
 import duke.task.TaskList;
 
 import java.util.Scanner;
 
 public class Duke {
+    // Key objects
+    public TaskList tasks;
+    public Storage storage;
+    public Display ui;
+    private Scanner in;
+    
     // Regex patterns
     public static final String REGEX_PATTERN_WHITESPACES = "\\s";
     public static final String REGEX_PATTERN_CSV_DELIMITER = "[ ]*,[ ]*";
@@ -95,9 +103,20 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        SaveManager.loadSave();
-        Display.printGreetingMessage();
+    public Duke(String saveFileName) {
+        in = new Scanner(System.in);
+        ui = new Display(in);
+        tasks = new TaskList(ui);
+        storage = new Storage(saveFileName, ui);
+        storage.loadSave(tasks);
+    }
+    
+    public void run() {
+        ui.printGreetingMessage();
         processInputLoop();
+    }
+    
+    public static void main(String[] args) {
+        new Duke("save.csv").run();
     }
 }

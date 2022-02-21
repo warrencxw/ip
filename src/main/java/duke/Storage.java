@@ -8,12 +8,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class SaveManager {
-    public static final String SAVE_FILE_NAME = "save.csv";
+public class Storage {
+    // Member objects
+    private File saveFile;
+    public String saveFileName;
+    private String saveFilePath;
+    private Display ui;
+    
+    // String Constants
     private static final String PATH_STRING_DATA_FOLDER = "data";
-    private static final String PATH_STRING_SAVE_FILE = PATH_STRING_DATA_FOLDER + File.separator + SAVE_FILE_NAME;
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
+    
     // TODO: CREATE A TEST FOR LOAD
 
     /**
@@ -24,7 +30,7 @@ public class SaveManager {
      * @return Returns true if the save file exists, false otherwise
      * @throws IOException If File.exists(), File.mkdir(), File.createNewFile() faces exceptions.
      */
-    private static boolean saveExists(boolean toCreate) throws IOException {
+    private boolean saveExists(boolean toCreate) throws IOException {
         File directory = new File(PATH_STRING_DATA_FOLDER);
         if (!directory.exists()) {
             if (!toCreate) {
@@ -33,12 +39,12 @@ public class SaveManager {
             
             boolean success = directory.mkdir();
             if (!success) {
-                Display.printError(Display.ErrorType.FILE_CREATION_FAILED);
+                ui.printError(Display.ErrorType.FILE_CREATION_FAILED);
                 return false;
             }
         }
 
-        File saveFile = new File(PATH_STRING_SAVE_FILE);
+        
         if (!saveFile.exists()) {
             if (!toCreate) {
                 return false;
@@ -46,7 +52,7 @@ public class SaveManager {
             
             boolean success = saveFile.createNewFile();
             if (!success) {
-                Display.printError(Display.ErrorType.FILE_CREATION_FAILED);
+                ui.printError(Display.ErrorType.FILE_CREATION_FAILED);
                 return false;
             }
         }
@@ -56,13 +62,13 @@ public class SaveManager {
     /**
      * Loads from save.csv, all tasks that were previously saved, into TaskList
      */
-    static void loadSave() {
+    public void loadSave(TaskList tasks) {
         boolean saveExists = false;
         try {
             saveExists = saveExists(false);
         } catch (IOException exception) {
             exception.printStackTrace();
-            Display.printError(Display.ErrorType.SAVE_LOAD_FAILED);
+            ui.printError(Display.ErrorType.SAVE_LOAD_FAILED);
             return;
         }
         
@@ -70,14 +76,12 @@ public class SaveManager {
             return;
         }
 
-        File saveFile;
         Scanner saveIn;
         try {
-            saveFile = new File(PATH_STRING_SAVE_FILE);
             saveIn = new Scanner(saveFile);
         } catch (FileNotFoundException exception) {
             exception.printStackTrace();
-            Display.printError(Display.ErrorType.SAVE_LOAD_FAILED);
+            ui.printError(Display.ErrorType.SAVE_LOAD_FAILED);
             return;
         }
         
@@ -86,9 +90,9 @@ public class SaveManager {
             inputLine = saveIn.nextLine();
             String[] csvRecordEntries = inputLine.split(Duke.REGEX_PATTERN_CSV_DELIMITER);
             try {
-                TaskList.addTaskFromCSVRecord(csvRecordEntries);
+                tasks.addTaskFromCSVRecord(csvRecordEntries);
             } catch (DukeException exception) {
-                System.out.println(exception.getMessage());
+                ui.printlnMessage(exception.getMessage());
                 return;
             }
         }
@@ -97,25 +101,25 @@ public class SaveManager {
     /**
      * Save into save.csv, all tasks that are currently in TaskList, as a CSV file
      */
-    static void saveChanges() {
+    public void saveChanges(TaskList tasks) {
         boolean saveExists;
         try {
             saveExists = saveExists(true);
         } catch (IOException exception) {
             exception.printStackTrace();
-            Display.printError(Display.ErrorType.FILE_CREATION_FAILED);
+            ui.printError(Display.ErrorType.FILE_CREATION_FAILED);
         }
         
         FileWriter fw;
         try {
-            fw = new FileWriter(PATH_STRING_SAVE_FILE);
+            fw = new FileWriter(saveFilePath);
         } catch (IOException exception) {
             exception.printStackTrace();
-            Display.printError(Display.ErrorType.SAVE_WRITE_FAILED);
+            ui.printError(Display.ErrorType.SAVE_WRITE_FAILED);
             return;
         }
         
-        String[] saveStrings = TaskList.getSavableCSVStrings();
+        String[] saveStrings = tasks.getSavableCSVStrings();
         try {
             for (String saveString : saveStrings) {
                 fw.write(saveString + LINE_SEPARATOR);
@@ -123,7 +127,21 @@ public class SaveManager {
             fw.close();
         } catch (IOException exception) {
             exception.printStackTrace();
-            Display.printError(Display.ErrorType.SAVE_WRITE_FAILED);
+            ui.printError(Display.ErrorType.SAVE_WRITE_FAILED);
         }
+    }
+    
+    public Storage() {
+        saveFileName = "save.csv";
+        saveFilePath = PATH_STRING_DATA_FOLDER + File.separator + saveFileName;
+        saveFile = new File(saveFilePath);
+        ui = new Display();
+    }
+
+    public Storage(String saveFileName, Display ui) {
+        this.saveFileName = saveFileName;
+        this.saveFilePath = PATH_STRING_DATA_FOLDER + File.separator + saveFileName;
+        this.saveFile = new File(saveFilePath);
+        this.ui = ui;
     }
 }
