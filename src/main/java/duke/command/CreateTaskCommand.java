@@ -4,9 +4,12 @@ import duke.Display;
 import duke.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a generic Command that creates a Task object to be added into the specified TaskList object
+ */
 public abstract class CreateTaskCommand extends Command {
     /**
-     * Takes in an input string and returns whether the input string starts with a time specification delimiter.
+     * Checks whether the input argument string is empty or missing a task name for Event and Deadline classes.
      *
      * @param taskDetailString Input string that follows the syntax [task name] [delimiter] [time specification]
      * @param taskType         Either TaskType.EVENT or TaskType.DEADLINE
@@ -23,8 +26,8 @@ public abstract class CreateTaskCommand extends Command {
     }
 
     /**
-     * Takes in an input string and returns a String array of {task name, time specification} if input syntax is valid.
-     * Returns NULL if any component is missing, i.e. invalid syntax.
+     * Takes in an input string and returns a String array of {task name, time specification} if input syntax is valid,
+     * for Event and Deadline objects.
      *
      * @param taskDetailString Input string that follows the syntax [task name] [delimiter] [time specification]
      * @param taskType         Either TaskType.EVENT or TaskType.DEADLINE
@@ -55,7 +58,12 @@ public abstract class CreateTaskCommand extends Command {
         }
         return taskDetailTokens;
     }
-    
+
+    /**
+     * Standard constructor, creates a CreateTaskCommand object with a specified argument
+     * 
+     * @param commandArgs arguments that contain the task name and time specification (if any) of the task
+     */
     public CreateTaskCommand(String commandArgs) {
         super (commandArgs);
     }
