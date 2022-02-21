@@ -36,7 +36,7 @@ public class TaskList {
     public enum TaskType {
         TODO, DEADLINE, EVENT
     }
-    
+
     // Subclass Constants
     private static final int TODO_RECORD_LENGTH = 3;
     private static final int DEADLINE_EVENT_RECORD_LENGTH = 4;
@@ -104,7 +104,7 @@ public class TaskList {
     /**
      * Reads through every single Task in the TaskList and returns an array of Strings, each String containing
      * a CSV record for each Task in the TaskList.
-     * 
+     *
      * @return Returns a String array of CSV records representing the entire TaskList to be saved.
      */
     public String[] getSavableCSVStrings() {
@@ -117,21 +117,21 @@ public class TaskList {
 
     /**
      * Reads through a single CSV record and checks if it is valid and can be loaded into the TaskList as a task.
-     * 
+     *
      * @param record An array of Strings each representing a value within the CSV record
      * @return Returns true if the CSV record is valid and can be loaded as a Task, false otherwise.
      */
     public boolean isValidCSVRecord(String[] record) {
-        boolean isInvalidRecordLength = 
+        boolean isInvalidRecordLength =
                 record.length < TODO_RECORD_LENGTH || record.length > DEADLINE_EVENT_RECORD_LENGTH;
         if (isInvalidRecordLength) {
             return false;
         }
         boolean isValidTask =
                 (record.length == TODO_RECORD_LENGTH && record[0].equalsIgnoreCase("T"))
-                        || (record.length == DEADLINE_EVENT_RECORD_LENGTH 
+                        || (record.length == DEADLINE_EVENT_RECORD_LENGTH
                         && (record[0].equalsIgnoreCase("D") || record[0].equalsIgnoreCase("E")));
-        boolean isValidMarking = 
+        boolean isValidMarking =
                 record[1].equalsIgnoreCase("Y") || record[1].equalsIgnoreCase("N");
         return isValidTask && isValidMarking;
     }
@@ -139,17 +139,17 @@ public class TaskList {
     /**
      * Reads through a single CSV record, and if valid, create a relevant Task subclass object into tasks.
      * Otherwise, throw an exception containing the error message for a malformed CSV record.
-     * 
+     *
      * @param record An array of Strings each representing a value within the CSV record
      * @throws DukeException If record is a CSV record that does not follow the saving conventions as per any of
      *                       each Task subclass' getSavableCSVString() method.
      */
     public void addTaskFromCSVRecord(String[] record) throws DukeException {
         if (!isValidCSVRecord(record)) {
-            throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD); 
+            throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
         // record = { taskType {T,E,D}, marked {Y,N}, name, dueDate/eventTime(if D/E)}
-        
+
         boolean marked = record[1].equalsIgnoreCase("Y");
         switch (record[0]) {
         case "T":
@@ -165,35 +165,34 @@ public class TaskList {
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
     }
-    
+
     public void clearTasks() {
         tasks.clear();
     }
-    
+
     public void addTask(Task task) {
         if (task != null) {
             tasks.add(task);
         }
-        
     }
-    
+
     public void removeTask(int taskNo) throws IndexOutOfBoundsException {
         tasks.remove(taskNo);
     }
-    
+
     public Task getTask(int taskNo) throws IndexOutOfBoundsException {
         return tasks.get(taskNo);
     }
-    
+
     public int getSize() {
         return tasks.size();
     }
-    
+
     public TaskList() {
         tasks = new ArrayList<>();
         ui = new Display();
     }
-    
+
     public TaskList(Display ui) {
         tasks = new ArrayList<>();
         this.ui = ui;
