@@ -96,11 +96,11 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("| Task List |");
+        StringBuilder taskListString = new StringBuilder("| Task List |");
         for (int i = 0; i < tasks.size(); i++) {
-            sb.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
+            taskListString.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
         }
-        return sb.toString();
+        return taskListString.toString();
     }
 
     /**
@@ -169,6 +169,19 @@ public class TaskList {
         default:
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
+    }
+    
+    public String findTasksByString(String substring) {
+        StringBuilder resultString = new StringBuilder("| Matching Tasks |");
+        int totalCount = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).containsString(substring)) {
+                resultString.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
+                totalCount += 1;
+            }
+        }
+        resultString.append("\nThere are " + totalCount + " matches.");
+        return resultString.toString();
     }
 
     public void clearTasks() {
