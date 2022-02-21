@@ -21,7 +21,7 @@ import java.time.format.DateTimeParseException;
 /**
  * A static class containing methods to process and make sense of user input.
  * Connects user inputs to the right subclass of the Command class to be run.
- */=
+ */
 public class Parser {
     // Regex patterns
     public static final String REGEX_PATTERN_WHITESPACES = "\\s";
@@ -42,8 +42,15 @@ public class Parser {
         output[1] = inputs[1];
         return output;
     }
-  
-    // TODO
+
+    /**
+     * Reads in an input string that represents a specified date in the format YYYY-MM-DD and parses it
+     * to return a LocalDate object.
+     * 
+     * @param input a String object that represents a date
+     * @return LocalDate object corresponding to the given date string
+     * @throws DukeException if the input is not a valid date format
+     */
     public static LocalDate parseDateFromString(String input) throws DukeException {
         LocalDate date;
         try {
