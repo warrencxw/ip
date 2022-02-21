@@ -26,9 +26,9 @@ public class Event extends Task {
     }
 
     @Override
-    public void printAddedMessage() {
-        System.out.println("Event \"" + taskName + "\" has been added.");
-        System.out.println(" > " + toString());
+    public String getAddedMessage() {
+        return "Event \"" + taskName + "\" has been added.\n" 
+                + " > " + toString();
     }
 
     @Override

@@ -26,9 +26,9 @@ public class Deadline extends Task {
     }
 
     @Override
-    public void printAddedMessage() {
-        System.out.println("Deadline \"" + taskName + "\" has been added.");
-        System.out.println(" > " + toString());
+    public String getAddedMessage() {
+        return "Deadline \"" + taskName + "\" has been added.\n" 
+                + " > " + toString();
     }
 
     @Override
