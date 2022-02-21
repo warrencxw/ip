@@ -14,7 +14,7 @@ public class Event extends Task {
         super(taskName);
         this.eventTime = eventTime;
     }
-    
+
     public Event(String taskName, Boolean isDone, String eventTime) {
         super(taskName, isDone);
         this.eventTime = eventTime;
@@ -27,15 +27,15 @@ public class Event extends Task {
 
     @Override
     public String getAddedMessage() {
-        return "Event \"" + taskName + "\" has been added.\n" 
+        return "Event \"" + taskName + "\" has been added.\n"
                 + " > " + toString();
     }
 
     @Override
     public String getSavableCSVString() {
-        return "E" + Duke.CSV_DELIMITER 
-                + (isDone ? "Y" : "N") + Duke.CSV_DELIMITER 
-                + taskName + Duke.CSV_DELIMITER 
+        return "E" + Duke.CSV_DELIMITER
+                + (isDone ? "Y" : "N") + Duke.CSV_DELIMITER
+                + taskName + Duke.CSV_DELIMITER
                 + eventTime;
     }
 }

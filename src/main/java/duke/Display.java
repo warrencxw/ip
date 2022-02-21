@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Display {
     Scanner in;
-    
+
     // Types of errors
     public enum ErrorType {
         MISSING_TASK_NO, INVALID_TASK_NO, EMPTY_INPUT, EMPTY_TASK_NAME,
@@ -38,9 +38,9 @@ public class Display {
     private static final String ERROR_CSV_DELIMITER_IN_TASK =
             "The delimiter '" + Duke.CSV_DELIMITER + "' is not allowed to be included in any part of the Task.\n"
                     + "Please try again after omitting it!";
-    private static final String ERROR_FILE_CREATION_FAILED = 
+    private static final String ERROR_FILE_CREATION_FAILED =
             "The save system was unable to create the save file for this program. Any tasks created will not be saved.";
-    private static final String ERROR_SAVE_LOAD_FAILED = 
+    private static final String ERROR_SAVE_LOAD_FAILED =
             "The save system attempted to look for a save file, but encountered errors in the process of doing so.\n"
                     + "The program will proceed with running as if there was no save files.";
     private static final String ERROR_SAVE_WRITE_FAILED =
@@ -201,36 +201,36 @@ public class Display {
         }
         return "";
     }
-    
+
     public void printMessage(String message) {
         System.out.print(message);
     }
-    
+
     public void printMessage(Object message) {
         printMessage(message.toString());
     }
-    
+
     public void printlnMessage(String message) {
         System.out.println(message);
     }
-    
+
     public void printlnMessage(Object message) {
         printlnMessage(message.toString());
     }
-    
+
     public String getNextLine() {
         return in.nextLine().trim();
     }
-    
+
     public String getNextLineWithPrepend(String prepend) {
         printMessage(prepend);
         return getNextLine();
     }
-    
+
     public Display(Scanner in) {
         this.in = in;
     }
-    
+
     public Display() {
         in = new Scanner(System.in);
     }

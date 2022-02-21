@@ -1,7 +1,17 @@
 package duke;
 
-// TODO EXPAND OUT ALL THE COMMANDS IMPORTED
-import duke.command.*;
+import duke.command.Command;
+import duke.command.ClearCommand;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EmptyCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.HelpCommand;
+import duke.command.ListCommand;
+import duke.command.MarkTaskCommand;
+import duke.command.TodoCommand;
+import duke.command.UnrecognisedCommand;
 import duke.task.TaskList;
 
 public class Parser {

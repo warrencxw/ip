@@ -4,8 +4,6 @@ import duke.Display;
 import duke.Storage;
 import duke.task.TaskList;
 
-import java.util.Scanner;
-
 public class ClearCommand extends Command {
     // Warning messages
     public static final String WARNING_DELETION =
@@ -14,8 +12,8 @@ public class ClearCommand extends Command {
             "Deletion has been aborted.";
     public static final String TASK_DELETED_CONFIRMATION =
             "All tasks have been cleared.";
-    
-    
+
+
     @Override
     public void run(Display ui, TaskList tasks, Storage storage) {
         ui.printlnMessage(WARNING_DELETION);
