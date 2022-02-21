@@ -31,6 +31,10 @@ public abstract class Task {
     public boolean isDone() {
         return isDone;
     }
+    
+    public boolean containsString(String substring) {
+        return taskName.contains(substring);
+    }
 
     /**
      * Prints a message to indicate that the task has been successfully added.

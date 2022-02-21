@@ -165,6 +165,19 @@ public class TaskList {
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
     }
+    
+    public String findTasksByString(String substring) {
+        StringBuilder resultString = new StringBuilder("| Matching Tasks |");
+        int totalCount = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).containsString(substring)) {
+                resultString.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
+                totalCount += 1;
+            }
+        }
+        resultString.append("\nThere are " + totalCount + " matches.");
+        return resultString.toString();
+    }
 
     public void clearTasks() {
         tasks.clear();
