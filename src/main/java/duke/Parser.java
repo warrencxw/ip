@@ -7,6 +7,7 @@ import duke.command.DeleteCommand;
 import duke.command.EmptyCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkTaskCommand;
@@ -14,10 +15,13 @@ import duke.command.TodoCommand;
 import duke.command.UnrecognisedCommand;
 import duke.task.TaskList;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 /**
  * A static class containing methods to process and make sense of user input.
  * Connects user inputs to the right subclass of the Command class to be run.
- */
+ */=
 public class Parser {
     // Regex patterns
     public static final String REGEX_PATTERN_WHITESPACES = "\\s";
@@ -38,8 +42,19 @@ public class Parser {
         output[1] = inputs[1];
         return output;
     }
-
-    /**
+  
+    // TODO
+    public static LocalDate parseDateFromString(String input) throws DukeException {
+        LocalDate date;
+        try {
+            date = LocalDate.parse(input);
+        } catch (DateTimeParseException exception) {
+            throw new DukeException (Display.getErrorMessage(Display.ErrorType.INVALID_DATE));
+        }
+        return date;
+    }
+    
+   /**
      * Reads in a String object representing the task number and parses the String object to get the numeric index.
      * If taskNoString is a valid integer, it is further checked if it is within the array index limits of the
      * TaskList object. Returns an integer representing the index of the task.
@@ -117,6 +132,8 @@ public class Parser {
         // CREATE NEW EVENT
         case "event":
             return new EventCommand(commandArgs);
+        case "find":
+            return new FindCommand(commandArgs);
         // DELETE TASK, FALLTHROUGH : IDENTICAL COMMANDS
         case "delete":
         case "remove":

@@ -9,7 +9,7 @@ import duke.task.TaskList;
  */
 public abstract class Command {
     public enum CommandType {
-        EMPTY, HELP, LIST, MARK, TODO, DEADLINE, EVENT, DELETE, CLEAR, EXIT, UNRECOGNISED
+        EMPTY, HELP, LIST, MARK, TODO, DEADLINE, EVENT, FIND, DELETE, CLEAR, EXIT, UNRECOGNISED
     }
 
     // Member attributes

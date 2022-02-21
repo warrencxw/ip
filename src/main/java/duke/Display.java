@@ -13,8 +13,8 @@ public class Display {
     // Types of errors
     public enum ErrorType {
         MISSING_TASK_NO, INVALID_TASK_NO, EMPTY_INPUT, EMPTY_TASK_NAME,
-        MISSING_EVENT_DELIMITER, MISSING_DEADLINE_DELIMITER,
-        EMPTY_TASK_LIST, COMMAND_NOT_RECOGNISED, CSV_DELIMITER_IN_TASK,
+        MISSING_EVENT_DELIMITER, MISSING_DEADLINE_DELIMITER, INVALID_DATE,
+        MISSING_SUBSTRING, EMPTY_TASK_LIST, COMMAND_NOT_RECOGNISED, CSV_DELIMITER_IN_TASK,
         FILE_CREATION_FAILED, SAVE_LOAD_FAILED, SAVE_WRITE_FAILED
     }
 
@@ -28,14 +28,21 @@ public class Display {
     private static final String ERROR_EMPTY_TASK_NAME =
             "Please enter a name for your task.\n"
                     + "SYNTAX: todo <todo name>\n"
-                    + "        event <event name> /at <time range>\n"
-                    + "        deadline <deadline name> /by <due date>";
+                    + "        event <event name> /at <YYYY-MM-DD>\n"
+                    + "        deadline <deadline name> /by <YYYY-MM-DD>";
     private static final String ERROR_MISSING_EVENT_DELIMITER =
             "Please specify a time range for the event with the delimiter \"/at\"\n"
-                    + "SYNTAX: event <event name> /at <time range>";
+                    + "SYNTAX: event <event name> /at <YYYY-MM-DD>";
     private static final String ERROR_MISSING_DEADLINE_DELIMITER =
             "Please specify a deadline for the task with the delimiter \"/by\"\n"
-                    + "SYNTAX: deadline <deadline name> /by <due date>";
+                    + "SYNTAX: deadline <deadline name> /by <YYYY-MM-DD>";
+    private static final String ERROR_MISSING_SUBSTRING =
+            "Please specify a substring to search the task list with.\n" 
+                    + "SYNTAX: find <substring>";
+    private static final String ERROR_INVALID_DATE =
+            "Please specify the date in a valid format as follows.\n"
+                    + "SYNTAX: event <event name> /at <YYYY-MM-DD>\n"
+                    + "        deadline <deadline name> /by <YYYY-MM-DD>";
     private static final String ERROR_EMPTY_TASK_LIST =
             "The task list is empty!";
     private static final String ERROR_COMMAND_NOT_RECOGNISED =
@@ -87,19 +94,21 @@ public class Display {
                     + "        Displays the full list of tasks that have been saved.\n"
                     + "  2. todo <task name>\n"
                     + "        Creates a new todo list entry.\n"
-                    + "  3. event <event name> /at <time range>\n"
+                    + "  3. event <event name> /at <YYYY-MM-DD>\n"
                     + "        Creates a new event entry with its accompanying time of occurrence.\n"
-                    + "  4. deadline <deadline name> /by <due date>\n"
+                    + "  4. deadline <deadline name> /by <YYYY-MM-DD>\n"
                     + "        Creates a new deadline entry with its accompanying due date.\n"
                     + "  5. mark <task entry number>\n"
                     + "        Marks the entry as done, see list for entry numbers.\n"
                     + "  6. unmark <task entry number>\n"
                     + "        Marks the entry as incomplete, see list for entry numbers.\n"
-                    + "  7. help / ?\n"
+                    + "  7. find <substring>\n"
+                    + "        Lists tasks that contain <substring> in their name.\n"
+                    + "  8. help / ?\n"
                     + "        Displays this help menu.\n"
-                    + "  8. clear\n"
+                    + "  9. clear\n"
                     + "        Clears all tasks that have been saved thus far after a confirmation message.\n"
-                    + "  9. bye / exit / quit\n"
+                    + "  10. bye / exit / quit\n"
                     + "        Displays the farewell message and closes the application.";
 
     /**
@@ -159,6 +168,12 @@ public class Display {
         case MISSING_DEADLINE_DELIMITER:
             System.out.println(ERROR_MISSING_DEADLINE_DELIMITER);
             break;
+        case MISSING_SUBSTRING:
+            System.out.println(ERROR_MISSING_SUBSTRING);
+            break;
+        case INVALID_DATE:
+            System.out.println(ERROR_INVALID_DATE);
+            break;
         case EMPTY_TASK_LIST:
             System.out.println(ERROR_EMPTY_TASK_LIST);
             break;
@@ -200,6 +215,10 @@ public class Display {
             return ERROR_MISSING_EVENT_DELIMITER;
         case MISSING_DEADLINE_DELIMITER:
             return ERROR_MISSING_DEADLINE_DELIMITER;
+        case MISSING_SUBSTRING:
+            return ERROR_MISSING_SUBSTRING;
+        case INVALID_DATE:
+            return ERROR_INVALID_DATE;
         case EMPTY_TASK_LIST:
             return ERROR_EMPTY_TASK_LIST;
         case COMMAND_NOT_RECOGNISED:

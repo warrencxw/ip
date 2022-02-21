@@ -2,11 +2,13 @@ package duke.task;
 
 import duke.Duke;
 
+import java.time.LocalDate;
+
 /**
  * Represents an event or an activity that happened or will happen at a specific time.
  */
 public class Event extends Task {
-    protected String eventTime;
+    protected LocalDate eventTime;
 
     /**
      * Default constructor, sets taskName to an empty String object and marks isDone to false.
@@ -14,7 +16,7 @@ public class Event extends Task {
      */
     public Event() {
         super();
-        this.eventTime = "";
+        this.eventTime = LocalDate.now();
     }
 
     /**
@@ -24,7 +26,7 @@ public class Event extends Task {
      * @param taskName  a String object that specifies the name of the task
      * @param eventTime the time at which the event occurs
      */
-    public Event(String taskName, String eventTime) {
+    public Event(String taskName, LocalDate eventTime) {
         super(taskName);
         this.eventTime = eventTime;
     }
@@ -38,14 +40,15 @@ public class Event extends Task {
      * @param isDone    the completion status of the Task
      * @param eventTime the time at which the event occurs
      */
-    public Event(String taskName, Boolean isDone, String eventTime) {
+    public Event(String taskName, Boolean isDone, LocalDate eventTime) {
         super(taskName, isDone);
         this.eventTime = eventTime;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (happening at: " + eventTime + ")";
+        return "[E]" + super.toString() + " (happening at: " 
+                + eventTime.getDayOfMonth() + " " + eventTime.getMonth() + " " + eventTime.getYear() + ")";
     }
 
     @Override
