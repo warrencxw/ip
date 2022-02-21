@@ -8,7 +8,8 @@ public class FindCommand extends Command {
     @Override
     public void run(Display ui, TaskList tasks, Storage storage) {
         if (commandArgs.trim().isEmpty()) {
-            
+            ui.printError(Display.ErrorType.MISSING_SUBSTRING);
+            return;
         }
         String matchList = tasks.findTasksByString(commandArgs);
         ui.printlnMessage(matchList);
