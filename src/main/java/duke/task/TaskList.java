@@ -1,14 +1,15 @@
 package duke.task;
 
 import duke.Display;
-import duke.Duke;
 import duke.DukeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
+/**
+ * Represents a collection of Tasks, its relevant management tools and information.
+ */
 public class TaskList {
     // Member attributes
     private ArrayList<Task> tasks;
@@ -44,7 +45,8 @@ public class TaskList {
     private static final int DEADLINE_EVENT_RECORD_LENGTH = 4;
 
     /**
-     * Returns String pattern of the task specified in the argument
+     * Returns the String pattern that identifies the additional parameters of the
+     * type of task specified in the argument.
      *
      * @param taskType Either TaskType.EVENT or TaskType.DEADLINE
      * @return String pattern of task given
@@ -68,7 +70,8 @@ public class TaskList {
     }
 
     /**
-     * Returns Regex pattern of the task specified in the argument
+     * Returns Regex pattern that identifies the additional parameters of the
+     * type of task specified in the argument
      *
      * @param taskType Either TaskType.EVENT or TaskType.DEADLINE
      * @return Regex pattern of task given
@@ -92,7 +95,9 @@ public class TaskList {
     }
 
     /**
-     * Prints out the full list of inputs given by the user
+     * Returns a String object containing the full list of tasks that are stored in the TaskList object
+     *
+     * @return a String object containing a readable representation of the TaskList
      */
     @Override
     public String toString() {
@@ -107,7 +112,7 @@ public class TaskList {
      * Reads through every single Task in the TaskList and returns an array of Strings, each String containing
      * a CSV record for each Task in the TaskList.
      *
-     * @return Returns a String array of CSV records representing the entire TaskList to be saved.
+     * @return a String array of CSV records representing the entire TaskList to be saved.
      */
     public String[] getSavableCSVStrings() {
         String[] csvStrings = new String[tasks.size()];
@@ -150,8 +155,8 @@ public class TaskList {
         if (!isValidCSVRecord(record)) {
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
-        // record = { taskType {T,E,D}, marked {Y,N}, name, dueDate/eventTime(if D/E)}
 
+        // REFERENCE: record = { taskType {T,E,D}, marked {Y,N}, name, dueDate/eventTime(if D/E)}
         boolean marked = record[1].equalsIgnoreCase("Y");
         LocalDate date;
         switch (record[0]) {
@@ -184,33 +189,68 @@ public class TaskList {
         return resultString.toString();
     }
 
+    /**
+     * Clears all the tasks that are in the TaskList object
+     */
     public void clearTasks() {
         tasks.clear();
     }
 
+    /**
+     * Add a specified task into the TaskList
+     *
+     * @param task a Task object to be added into the TaskList
+     */
     public void addTask(Task task) {
         if (task != null) {
             tasks.add(task);
         }
     }
 
+    /**
+     * Removes a task from the TaskList specified by its task number as shown when listed out using
+     * <code>toString()</code>
+     *
+     * @param taskNo an integer in [0, getSize() - 1], representing the index of a Task in the TaskList
+     * @throws IndexOutOfBoundsException if taskNo is not within [0, getSize() - 1]
+     */
     public void removeTask(int taskNo) throws IndexOutOfBoundsException {
         tasks.remove(taskNo);
     }
 
+    /**
+     * Returns a reference to a Task in the TaskList specified by its task number as shown when listed out using
+     * <code>toString()</code>
+     *
+     * @param taskNo an integer in [0, getSize() - 1], representing the index of a Task in the TaskList
+     * @throws IndexOutOfBoundsException if taskNo is not within [0, getSize() - 1]
+     */
     public Task getTask(int taskNo) throws IndexOutOfBoundsException {
         return tasks.get(taskNo);
     }
 
+    /**
+     * Returns the number of Task objects currently in the TaskList object
+     *
+     * @return an integer indicating the number of Task objects in tasks
+     */
     public int getSize() {
         return tasks.size();
     }
 
+    /**
+     * Default constructor, instantiates an empty ArrayList of tasks and a default Display object with which
+     * all error and output messages are printed using.
+     */
     public TaskList() {
         tasks = new ArrayList<>();
         ui = new Display();
     }
 
+    /**
+     * Standard constructor, instantiates an empty ArrayList of tasks and uses a specified Display object with which
+     * all error and output messages are printed using.
+     */
     public TaskList(Display ui) {
         tasks = new ArrayList<>();
         this.ui = ui;
