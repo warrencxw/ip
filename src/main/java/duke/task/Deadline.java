@@ -2,11 +2,13 @@ package duke.task;
 
 import duke.Duke;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task with a deadline that may or may not have passed.
  */
 public class Deadline extends Task {
-    protected String dueDate;
+    protected LocalDate dueDate;
 
     /**
      * Default constructor, sets taskName to an empty String object and marks isDone to false.
@@ -14,7 +16,7 @@ public class Deadline extends Task {
      */
     public Deadline() {
         super();
-        this.dueDate = "";
+        this.dueDate = LocalDate.now();
     }
 
     /**
@@ -24,7 +26,7 @@ public class Deadline extends Task {
      * @param taskName a String object that specifies the name of the task
      * @param dueDate  the time by which the task is due
      */
-    public Deadline(String taskName, String dueDate) {
+    public Deadline(String taskName, LocalDate dueDate) {
         super(taskName);
         this.dueDate = dueDate;
     }
@@ -38,14 +40,15 @@ public class Deadline extends Task {
      * @param isDone   the completion status of the Task
      * @param dueDate  the time by which the task is due
      */
-    public Deadline(String taskName, Boolean isDone, String dueDate) {
+    public Deadline(String taskName, Boolean isDone, LocalDate dueDate) {
         super(taskName, isDone);
         this.dueDate = dueDate;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (due: " + dueDate + ")";
+        return "[D]" + super.toString() + " (due: " + 
+                dueDate.getDayOfMonth() + " " + dueDate.getMonth() + " " + dueDate.getYear() + ")";
     }
 
     @Override

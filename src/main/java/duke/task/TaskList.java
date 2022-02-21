@@ -3,6 +3,8 @@ package duke.task;
 import duke.Display;
 import duke.DukeException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
@@ -99,11 +101,11 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("| Task List |");
+        StringBuilder taskListString = new StringBuilder("| Task List |");
         for (int i = 0; i < tasks.size(); i++) {
-            sb.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
+            taskListString.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
         }
-        return sb.toString();
+        return taskListString.toString();
     }
 
     /**
@@ -149,26 +151,42 @@ public class TaskList {
      * @throws DukeException If record is a CSV record that does not follow the saving conventions as per any of
      *                       each Task subclass' getSavableCSVString() method.
      */
-    public void addTaskFromCSVRecord(String[] record) throws DukeException {
+    public void addTaskFromCSVRecord(String[] record) throws DukeException, DateTimeParseException {
         if (!isValidCSVRecord(record)) {
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
 
         // REFERENCE: record = { taskType {T,E,D}, marked {Y,N}, name, dueDate/eventTime(if D/E)}
         boolean marked = record[1].equalsIgnoreCase("Y");
+        LocalDate date;
         switch (record[0]) {
         case "T":
             tasks.add(new Todo(record[2], marked));
             break;
         case "E":
-            tasks.add(new Event(record[2], marked, record[3]));
+            date = LocalDate.parse(record[3]);
+            tasks.add(new Event(record[2], marked, date));
             break;
         case "D":
-            tasks.add(new Deadline(record[2], marked, record[3]));
+            date = LocalDate.parse(record[3]);
+            tasks.add(new Deadline(record[2], marked, date));
             break;
         default:
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
+    }
+    
+    public String findTasksByString(String substring) {
+        StringBuilder resultString = new StringBuilder("| Matching Tasks |");
+        int totalCount = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).containsString(substring)) {
+                resultString.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
+                totalCount += 1;
+            }
+        }
+        resultString.append("\nThere are " + totalCount + " matches.");
+        return resultString.toString();
     }
 
     /**

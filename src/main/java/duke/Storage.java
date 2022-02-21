@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -101,6 +102,9 @@ public class Storage {
                 tasks.addTaskFromCSVRecord(csvRecordEntries);
             } catch (DukeException exception) {
                 ui.printlnMessage(exception.getMessage());
+                return;
+            } catch (DateTimeParseException exception) {
+                exception.printStackTrace();
                 return;
             }
         }
