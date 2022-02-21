@@ -160,6 +160,9 @@ public class Display {
         case MISSING_DEADLINE_DELIMITER:
             System.out.println(ERROR_MISSING_DEADLINE_DELIMITER);
             break;
+        case MISSING_SUBSTRING:
+            System.out.println(ERROR_MISSING_SUBSTRING);
+            break;
         case INVALID_DATE:
             System.out.println(ERROR_INVALID_DATE);
             break;
@@ -198,6 +201,8 @@ public class Display {
             return ERROR_MISSING_EVENT_DELIMITER;
         case MISSING_DEADLINE_DELIMITER:
             return ERROR_MISSING_DEADLINE_DELIMITER;
+        case MISSING_SUBSTRING:
+            return ERROR_MISSING_SUBSTRING;
         case INVALID_DATE:
             return ERROR_INVALID_DATE;
         case EMPTY_TASK_LIST:
