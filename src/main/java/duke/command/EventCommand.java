@@ -16,7 +16,7 @@ public class EventCommand extends CreateTaskCommand {
             ui.printlnMessage(exception.getMessage());
             return;
         }
-        
+
         Event newEvent = new Event(taskDetailsString[0], taskDetailsString[1]);
         tasks.addTask(newEvent);
         ui.printlnMessage(newEvent.getAddedMessage());

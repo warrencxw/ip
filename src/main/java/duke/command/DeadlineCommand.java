@@ -16,7 +16,7 @@ public class DeadlineCommand extends CreateTaskCommand {
             ui.printlnMessage(exception.getMessage());
             return;
         }
-        
+
         Deadline newDeadline = new Deadline(taskDetailsString[0], taskDetailsString[1]);
         tasks.addTask(newDeadline);
         ui.printlnMessage(newDeadline.getAddedMessage());

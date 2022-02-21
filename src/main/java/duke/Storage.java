@@ -14,18 +14,18 @@ public class Storage {
     public String saveFileName;
     private String saveFilePath;
     private Display ui;
-    
+
     // String Constants
     private static final String PATH_STRING_DATA_FOLDER = "data";
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-    
+
     // TODO: CREATE A TEST FOR LOAD
 
     /**
      * Checks if a save file already exist on the system
      * If toCreate is true, creates the file structure and save file for saving TaskList data as it updates
-     * 
+     *
      * @param toCreate Tells the method whether to create the files for saving or only to check if save exists
      * @return Returns true if the save file exists, false otherwise
      * @throws IOException If File.exists(), File.mkdir(), File.createNewFile() faces exceptions.
@@ -36,7 +36,7 @@ public class Storage {
             if (!toCreate) {
                 return false;
             }
-            
+
             boolean success = directory.mkdir();
             if (!success) {
                 ui.printError(Display.ErrorType.FILE_CREATION_FAILED);
@@ -44,12 +44,12 @@ public class Storage {
             }
         }
 
-        
+
         if (!saveFile.exists()) {
             if (!toCreate) {
                 return false;
             }
-            
+
             boolean success = saveFile.createNewFile();
             if (!success) {
                 ui.printError(Display.ErrorType.FILE_CREATION_FAILED);
@@ -71,7 +71,7 @@ public class Storage {
             ui.printError(Display.ErrorType.SAVE_LOAD_FAILED);
             return;
         }
-        
+
         if (!saveExists) {
             return;
         }
@@ -84,8 +84,8 @@ public class Storage {
             ui.printError(Display.ErrorType.SAVE_LOAD_FAILED);
             return;
         }
-        
-        String inputLine; 
+
+        String inputLine;
         while (saveIn.hasNext()) {
             inputLine = saveIn.nextLine();
             String[] csvRecordEntries = inputLine.split(Duke.REGEX_PATTERN_CSV_DELIMITER);
@@ -109,7 +109,7 @@ public class Storage {
             exception.printStackTrace();
             ui.printError(Display.ErrorType.FILE_CREATION_FAILED);
         }
-        
+
         FileWriter fw;
         try {
             fw = new FileWriter(saveFilePath);
@@ -118,7 +118,7 @@ public class Storage {
             ui.printError(Display.ErrorType.SAVE_WRITE_FAILED);
             return;
         }
-        
+
         String[] saveStrings = tasks.getSavableCSVStrings();
         try {
             for (String saveString : saveStrings) {
@@ -130,7 +130,7 @@ public class Storage {
             ui.printError(Display.ErrorType.SAVE_WRITE_FAILED);
         }
     }
-    
+
     public Storage() {
         saveFileName = "save.csv";
         saveFilePath = PATH_STRING_DATA_FOLDER + File.separator + saveFileName;

@@ -9,7 +9,7 @@ import duke.task.TaskList;
 public class MarkTaskCommand extends Command {
     // Member Attributes
     boolean toMark;
-    
+
     /**
      * Modifies the completion of the task identified by the input task number and print out a confirmation message.
      * Will not modify tasks if taskNoString is not an integer, an error message is printed instead
@@ -41,13 +41,13 @@ public class MarkTaskCommand extends Command {
             exception.printStackTrace();
         }
     }
-    
+
     @Override
     public void run(Display ui, TaskList tasks, Storage storage) {
         markTask(toMark, commandArgs, ui, tasks);
         storage.saveChanges(tasks);
     }
-    
+
     public MarkTaskCommand(String commandArgs, boolean toMark) {
         super(commandArgs);
         this.toMark = toMark;

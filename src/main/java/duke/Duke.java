@@ -12,7 +12,7 @@ public class Duke {
     public Storage storage;
     public Display ui;
     private Scanner in;
-    
+
     // Regex patterns
     public static final String REGEX_PATTERN_WHITESPACES = "\\s";
     public static final String REGEX_PATTERN_CSV_DELIMITER = "[ ]*,[ ]*";
@@ -29,7 +29,7 @@ public class Duke {
     public void processInputLoop() {
         String input;
         Command command;
-        
+
         do {
             input = ui.getNextLineWithPrepend(INPUT_PREPEND);
             ui.printDivider();
@@ -46,12 +46,12 @@ public class Duke {
         storage = new Storage(saveFileName, ui);
         storage.loadSave(tasks);
     }
-    
+
     public void run() {
         ui.printGreetingMessage();
         processInputLoop();
     }
-    
+
     public static void main(String[] args) {
         new Duke("save.csv").run();
     }

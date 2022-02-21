@@ -14,7 +14,7 @@ public class Deadline extends Task {
         super(taskName);
         this.dueDate = dueDate;
     }
-    
+
     public Deadline(String taskName, Boolean isDone, String dueDate) {
         super(taskName, isDone);
         this.dueDate = dueDate;
@@ -27,7 +27,7 @@ public class Deadline extends Task {
 
     @Override
     public String getAddedMessage() {
-        return "Deadline \"" + taskName + "\" has been added.\n" 
+        return "Deadline \"" + taskName + "\" has been added.\n"
                 + " > " + toString();
     }
 
