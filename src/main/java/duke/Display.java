@@ -2,6 +2,11 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Represents the interface between the user and the program.
+ * Handles the printing of any messages from the program to the user
+ * and the reading of any messages from the user to the program.
+ */
 public class Display {
     Scanner in;
 
@@ -122,6 +127,9 @@ public class Display {
         System.out.println(FAREWELL_MESSAGE);
     }
 
+    /**
+     * Prints out the help message to standard output
+     */
     public void printHelpMessage() {
         System.out.println(HELP_MESSAGE);
     }
@@ -172,6 +180,12 @@ public class Display {
         }
     }
 
+    /**
+     * Returns the error message corresponding to the error type that may be experienced by the program
+     *
+     * @param error The error type encountered by the program
+     * @return a String object containing the error message for the specified error type
+     */
     public static String getErrorMessage(ErrorType error) {
         switch (error) {
         case MISSING_TASK_NO:
@@ -202,35 +216,79 @@ public class Display {
         return "";
     }
 
+    /**
+     * Prints out a message specified to standard output without line breaks.
+     *
+     * @param message String object containing the message to be printed
+     */
     public void printMessage(String message) {
         System.out.print(message);
     }
 
+    /**
+     * Prints out the String representation of an Object to standard output without line breaks.
+     *
+     * @param message An Object of which its String representation is to be printed out
+     */
     public void printMessage(Object message) {
         printMessage(message.toString());
     }
 
+    /**
+     * Prints out a message specified to standard output with line breaks.
+     *
+     * @param message String object containing the message to be printed
+     */
     public void printlnMessage(String message) {
         System.out.println(message);
     }
 
+    /**
+     * Prints out the String representation of an Object to standard output with line breaks.
+     *
+     * @param message An Object of which its String representation is to be printed out
+     */
     public void printlnMessage(Object message) {
         printlnMessage(message.toString());
     }
 
+    /**
+     * Reads a line of input from the user from standard input (or any other input streams depending
+     * on the <code>Scanner in</code> object initialisation in the constructor) into a String object.
+     *
+     * @return a String object containing a single line of input from standard input
+     */
     public String getNextLine() {
         return in.nextLine().trim();
     }
 
+    /**
+     * Prints out a prepending substring before reading a line of input from the user from standard input
+     * (or any other input streams depending on the <code>Scanner in</code> object initialisation in the constructor)
+     * into a String object.
+     *
+     * @param prepend a substring to be printed out before the user's input
+     * @return a String object containing a single line of input from standard input
+     */
     public String getNextLineWithPrepend(String prepend) {
         printMessage(prepend);
         return getNextLine();
     }
 
+    /**
+     * Creates a Display object to handle all message printing to standard output and data reading from the
+     * specified Scanner object in the parameter.
+     *
+     * @param in a Scanner object from which all messages in the application will read from
+     */
     public Display(Scanner in) {
         this.in = in;
     }
 
+    /**
+     * Creates a Display object to handle all message printing to standard output and data reading from
+     * standard input.
+     */
     public Display() {
         in = new Scanner(System.in);
     }
