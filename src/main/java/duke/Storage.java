@@ -8,6 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Represents a save file manager that saves a TaskList object or loads a TaskList object into a CSV file,
+ * saved in the 'data' folder, with the name identified as per <code>saveFileName</code> when instantiated.
+ */
 public class Storage {
     // Member objects
     private File saveFile;
@@ -60,7 +64,11 @@ public class Storage {
     }
 
     /**
-     * Loads from save.csv, all tasks that were previously saved, into TaskList
+     * Loads from a saved CSV file at <code>saveFilePath</code>, all tasks that were previously saved, into 
+     * the TaskList object passed into this method. If a file does not exist, the method will terminate and 
+     * <code>tasks</code> remains empty. A CSV file will not be created.
+     * 
+     * @param tasks the TaskList object in which the save file is loaded into
      */
     public void loadSave(TaskList tasks) {
         boolean saveExists = false;
@@ -99,7 +107,10 @@ public class Storage {
     }
 
     /**
-     * Save into save.csv, all tasks that are currently in TaskList, as a CSV file
+     * Save into <code>saveFilePath</code>, all tasks that are currently in the given TaskList object, as a CSV file.
+     * Creates a CSV file if it does not yet exist.
+     * 
+     * @param tasks The TaskList object with which all tasks within would be saved from
      */
     public void saveChanges(TaskList tasks) {
         boolean saveExists;
@@ -131,6 +142,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Default constructor, creates a Storage object that saves into and loads from a default file "save.csv"
+     */
     public Storage() {
         saveFileName = "save.csv";
         saveFilePath = PATH_STRING_DATA_FOLDER + File.separator + saveFileName;
@@ -138,6 +152,13 @@ public class Storage {
         ui = new Display();
     }
 
+    /**
+     * Alternative constructor, creates a Storage object that saves into and loads from a file with the name identified
+     * in <code>saveFileName</code>. Also reads in a Display object to manage error printing.
+     * 
+     * @param saveFileName name of CSV file to be used for saving and loading TaskList objects
+     * @param ui           a Display object to manage printing of errors and other messages
+     */
     public Storage(String saveFileName, Display ui) {
         this.saveFileName = saveFileName;
         this.saveFilePath = PATH_STRING_DATA_FOLDER + File.separator + saveFileName;

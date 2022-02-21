@@ -14,43 +14,48 @@ import duke.command.TodoCommand;
 import duke.command.UnrecognisedCommand;
 import duke.task.TaskList;
 
+/**
+ * A static class containing methods to process and make sense of user input.
+ * Connects user inputs to the right subclass of the Command class to be run.
+ */
 public class Parser {
     // Regex patterns
     public static final String REGEX_PATTERN_WHITESPACES = "\\s";
-    public static final String REGEX_PATTERN_CSV_DELIMITER = "[ ]*,[ ]*";
-    public static final String CSV_DELIMITER = ",";
 
     /**
-     * Processes the input to be split into an String array of { commandString, commandArgs }.
+     * Processes the input to be split into a String array of { commandString, commandArgs }, separated by spaces.
      * commandArgs is set to "" if not provided, where input is only a single token and not separated by spaces.
-     * 
+     *
      * @param input input string from the command line
      * @return String array of size 2 containing { commandString, commandArgs }
      */
     private static String[] getArguments(String input) {
         String[] inputs = input.split(REGEX_PATTERN_WHITESPACES, 2);
-        String[] output = new String[] { inputs[0], "" };
+        String[] output = new String[]{inputs[0], ""};
         if (inputs.length < 2) {
             return output;
         }
         output[1] = inputs[1];
         return output;
     }
-    
-    /** TODO
-     * Reads in a String object representing the task number and parses the String to get the numeric index.
-     * Returns an integer representing the index of the task.
+
+    /**
+     * Reads in a String object representing the task number and parses the String object to get the numeric index.
+     * If taskNoString is a valid integer, it is further checked if it is within the array index limits of the
+     * TaskList object. Returns an integer representing the index of the task.
      *
      * @param input The input task number string that identifies the task in "tasks"
-     * @return Returns an integer in [0, (tasks.size()-1)]
+     * @param ui    A Display object to manage printing of errors and other messages
+     * @param tasks The TaskList object of which the array index limits are checked against for the task number
+     * @return Returns an integer in [0, (tasks.getSize()-1)]
      * @throws DukeException If taskNoString is not a valid integer, tasks is empty or
-     *                       taskNoString is not within [0, (tasks.size()-1)]
+     *                       taskNoString is not within [1, (tasks.getSize())]
      */
     public static int parseTaskNoFromString(String input, Display ui, TaskList tasks) throws DukeException {
         if (input.trim().isEmpty()) {
             throw new DukeException(Display.getErrorMessage(Display.ErrorType.MISSING_TASK_NO));
         }
-        
+
         int taskNo;
         try {
             // -1 to get task index for 0-indexing
@@ -70,10 +75,16 @@ public class Parser {
                 throw new DukeException("Please enter a value between 1 and " + tasks.getSize());
             }
         }
-        
+
         return taskNo;
     }
-    
+
+    /**
+     * Parses the input string and returns a Command object with which the correct command can be run
+     *
+     * @param input raw unprocessed line of input from the user
+     * @return an appropriate Command object to carry out instructions of the user
+     */
     public static Command getCommand(String input) {
         // inputs: Array of Strings { commandString, commandArguments }
         String[] inputs = getArguments(input.trim());

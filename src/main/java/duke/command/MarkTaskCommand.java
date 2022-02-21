@@ -6,16 +6,22 @@ import duke.Parser;
 import duke.Storage;
 import duke.task.TaskList;
 
+/**
+ * Represents a Command that marks a Task object in the specified TaskList object indicated by the specified
+ * task number of the task as either completed or not, as specified.
+ */
 public class MarkTaskCommand extends Command {
     // Member Attributes
-    boolean toMark;
+    boolean done;
 
     /**
      * Modifies the completion of the task identified by the input task number and print out a confirmation message.
-     * Will not modify tasks if taskNoString is not an integer, an error message is printed instead
+     * Will not modify tasks if taskNoString is not an integer; an error message is printed instead
      *
      * @param shouldMarkTask Determines whether to set task to done or not done
      * @param taskNoString   The input task number string that identifies the task in "tasks"
+     * @param ui             A Display object to manage printing of errors and other messages
+     * @param tasks          A TaskList object in which the specified task is deleted
      */
     private void markTask(boolean shouldMarkTask, String taskNoString, Display ui, TaskList tasks) {
         // Check if task number is numerical
@@ -42,14 +48,28 @@ public class MarkTaskCommand extends Command {
         }
     }
 
+    /**
+     * Runs the command to mark the Task object in the TaskList object as indicated by the task number in the
+     * commandArgs as done or not yet done.
+     *
+     * @param ui      A Display object to manage printing of errors and other messages
+     * @param tasks   A TaskList object with which the command may process or modify
+     * @param storage A Storage object to manage the save file of the specified TaskList object if necessary
+     */
     @Override
     public void run(Display ui, TaskList tasks, Storage storage) {
-        markTask(toMark, commandArgs, ui, tasks);
+        markTask(done, commandArgs, ui, tasks);
         storage.saveChanges(tasks);
     }
 
-    public MarkTaskCommand(String commandArgs, boolean toMark) {
+    /**
+     * Standard constructor, creates a EventCommand object with specified command arguments
+     *
+     * @param commandArgs A String object representing the task name and the event date of the Event object
+     * @param done        indicates whether the Task should be marked as complete or not
+     */
+    public MarkTaskCommand(String commandArgs, boolean done) {
         super(commandArgs);
-        this.toMark = toMark;
+        this.done = done;
     }
 }
