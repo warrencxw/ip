@@ -31,8 +31,7 @@ public class Duke {
         Command command;
         
         do {
-            ui.printMessage(INPUT_PREPEND);
-            input = ui.getNextLine();
+            input = ui.getNextLineWithPrepend(INPUT_PREPEND);
             ui.printDivider();
             command = Parser.getCommand(input);
             command.run(ui, tasks, storage);

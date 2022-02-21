@@ -222,6 +222,11 @@ public class Display {
         return in.nextLine().trim();
     }
     
+    public String getNextLineWithPrepend(String prepend) {
+        printMessage(prepend);
+        return getNextLine();
+    }
+    
     public Display(Scanner in) {
         this.in = in;
     }
