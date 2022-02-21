@@ -2,27 +2,30 @@ package duke.task;
 
 import duke.Duke;
 
+import java.time.LocalDate;
+
 public class Event extends Task {
-    protected String eventTime;
+    protected LocalDate eventTime;
 
     public Event() {
         super();
-        this.eventTime = "";
+        this.eventTime = LocalDate.now();
     }
 
-    public Event(String taskName, String eventTime) {
+    public Event(String taskName, LocalDate eventTime) {
         super(taskName);
         this.eventTime = eventTime;
     }
 
-    public Event(String taskName, Boolean isDone, String eventTime) {
+    public Event(String taskName, Boolean isDone, LocalDate eventTime) {
         super(taskName, isDone);
         this.eventTime = eventTime;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (happening at: " + eventTime + ")";
+        return "[E]" + super.toString() + " (happening at: " 
+                + eventTime.getDayOfMonth() + " " + eventTime.getMonth() + " " + eventTime.getYear() + ")";
     }
 
     @Override
