@@ -1,4 +1,6 @@
 clear
+apple
+clear
 Y
 mark 1
 unmark 1
@@ -44,6 +46,7 @@ list
 help
 ? apple
 help test
+delete 
 delete 0
 delete 8
 delete apple
