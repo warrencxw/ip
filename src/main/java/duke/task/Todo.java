@@ -21,9 +21,9 @@ public class Todo extends Task {
     }
 
     @Override
-    public void printAddedMessage() {
-        System.out.println("Todo \"" + taskName + "\" has been added.");
-        System.out.println(" > " + toString());
+    public String getAddedMessage() {
+        return "Todo \"" + taskName + "\" has been added.\n"
+                + " > " + toString();
     }
 
     @Override

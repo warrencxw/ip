@@ -34,8 +34,9 @@ public abstract class Task {
 
     /**
      * Prints a message to indicate that the task has been successfully added.
+     * @return
      */
-    public abstract void printAddedMessage();
+    public abstract String getAddedMessage();
 
     /**
      * Convert Task object information into a savable CSV format
