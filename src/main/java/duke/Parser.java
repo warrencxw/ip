@@ -15,6 +15,9 @@ import duke.command.TodoCommand;
 import duke.command.UnrecognisedCommand;
 import duke.task.TaskList;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class Parser {
     // Regex patterns
     public static final String REGEX_PATTERN_WHITESPACES = "\\s";
@@ -36,6 +39,16 @@ public class Parser {
         }
         output[1] = inputs[1];
         return output;
+    }
+    
+    public static LocalDate parseDateFromString(String input) throws DukeException {
+        LocalDate date;
+        try {
+            date = LocalDate.parse(input);
+        } catch (DateTimeParseException exception) {
+            throw new DukeException (Display.getErrorMessage(Display.ErrorType.INVALID_DATE));
+        }
+        return date;
     }
     
     /** TODO
