@@ -57,7 +57,9 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * @param commandArgs
+     * Standard constructor, creates a DeleteCommand object with specified command arguments
+     *
+     * @param commandArgs a String object representing the task number that identifies the Task to be deleted
      */
     public DeleteCommand(String commandArgs) {
         super(commandArgs);
