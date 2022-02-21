@@ -2,27 +2,30 @@ package duke.task;
 
 import duke.Duke;
 
+import java.time.LocalDate;
+
 public class Deadline extends Task {
-    protected String dueDate;
+    protected LocalDate dueDate;
 
     public Deadline() {
         super();
-        this.dueDate = "";
+        this.dueDate = LocalDate.now();
     }
 
-    public Deadline(String taskName, String dueDate) {
+    public Deadline(String taskName, LocalDate dueDate) {
         super(taskName);
         this.dueDate = dueDate;
     }
 
-    public Deadline(String taskName, Boolean isDone, String dueDate) {
+    public Deadline(String taskName, Boolean isDone, LocalDate dueDate) {
         super(taskName, isDone);
         this.dueDate = dueDate;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (due: " + dueDate + ")";
+        return "[D]" + super.toString() + " (due: " + 
+                dueDate.getDayOfMonth() + " " + dueDate.getMonth() + " " + dueDate.getYear() + ")";
     }
 
     @Override

@@ -4,6 +4,8 @@ import duke.Display;
 import duke.Duke;
 import duke.DukeException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -144,22 +146,25 @@ public class TaskList {
      * @throws DukeException If record is a CSV record that does not follow the saving conventions as per any of
      *                       each Task subclass' getSavableCSVString() method.
      */
-    public void addTaskFromCSVRecord(String[] record) throws DukeException {
+    public void addTaskFromCSVRecord(String[] record) throws DukeException, DateTimeParseException {
         if (!isValidCSVRecord(record)) {
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
         }
         // record = { taskType {T,E,D}, marked {Y,N}, name, dueDate/eventTime(if D/E)}
 
         boolean marked = record[1].equalsIgnoreCase("Y");
+        LocalDate date;
         switch (record[0]) {
         case "T":
             tasks.add(new Todo(record[2], marked));
             break;
         case "E":
-            tasks.add(new Event(record[2], marked, record[3]));
+            date = LocalDate.parse(record[3]);
+            tasks.add(new Event(record[2], marked, date));
             break;
         case "D":
-            tasks.add(new Deadline(record[2], marked, record[3]));
+            date = LocalDate.parse(record[3]);
+            tasks.add(new Deadline(record[2], marked, date));
             break;
         default:
             throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
