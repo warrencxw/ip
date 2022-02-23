@@ -30,10 +30,6 @@ public class TaskList {
             "Invalid TaskType argument provided to method.";
     public static final String EXCEPTION_MESSAGE_STRING_PATTERN_TODO_REQUESTED =
             "TaskType TODO does not have a String pattern.";
-    public static final String EXCEPTION_MALFORMED_CSV_RECORD =
-            "The save file contains one or more malformed CSV records.\n"
-                    + "The loading process will be halted. Please quit immediately and rectify any errors\n"
-                    + "in the file to prevent the save file from being overwritten.";
 
     // Subclasses
     public enum TaskType {
@@ -153,7 +149,7 @@ public class TaskList {
      */
     public void addTaskFromCSVRecord(String[] record) throws DukeException, DateTimeParseException {
         if (!isValidCSVRecord(record)) {
-            throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
+            throw new DukeException(Display.getErrorMessage(Display.ErrorType.MALFORMED_CSV_RECORD));
         }
 
         // REFERENCE: record = { taskType {T,E,D}, marked {Y,N}, name, dueDate/eventTime(if D/E)}
@@ -172,7 +168,7 @@ public class TaskList {
             tasks.add(new Deadline(record[2], marked, date));
             break;
         default:
-            throw new DukeException(EXCEPTION_MALFORMED_CSV_RECORD);
+            throw new DukeException(Display.getErrorMessage(Display.ErrorType.MALFORMED_CSV_RECORD));
         }
     }
     

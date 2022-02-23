@@ -15,7 +15,7 @@ public class Display {
         MISSING_TASK_NO, INVALID_TASK_NO, EMPTY_INPUT, EMPTY_TASK_NAME,
         MISSING_EVENT_DELIMITER, MISSING_DEADLINE_DELIMITER, INVALID_DATE,
         MISSING_SUBSTRING, EMPTY_TASK_LIST, COMMAND_NOT_RECOGNISED, CSV_DELIMITER_IN_TASK,
-        FILE_CREATION_FAILED, SAVE_LOAD_FAILED, SAVE_WRITE_FAILED
+        FILE_CREATION_FAILED, SAVE_LOAD_FAILED, SAVE_WRITE_FAILED, MALFORMED_CSV_RECORD
     }
 
     // Error Messages
@@ -58,6 +58,11 @@ public class Display {
     private static final String ERROR_SAVE_WRITE_FAILED =
             "The save system attempted to write to a save file, but encountered errors in the process of doing so.\n"
                     + "The program will proceed with running without saving.";
+    private static final String ERROR_MALFORMED_CSV_RECORD =
+            "The save file contains one or more malformed CSV records.\n"
+                    + "As the malformed CSV records have not been loaded, please check using the 'list' command for\n"
+                    + "the entries that may have been malformed. Please quit immediately and rectify any errors\n"
+                    + "in the file to prevent the save file from being overwritten.";
 
     // Text Constants
     public static final String RABBIT_ASCII =
@@ -192,6 +197,9 @@ public class Display {
         case SAVE_WRITE_FAILED:
             System.out.println(ERROR_SAVE_WRITE_FAILED);
             break;
+        case MALFORMED_CSV_RECORD:
+            System.out.println(ERROR_MALFORMED_CSV_RECORD);
+            break;
         }
     }
 
@@ -231,6 +239,8 @@ public class Display {
             return ERROR_SAVE_LOAD_FAILED;
         case SAVE_WRITE_FAILED:
             return ERROR_SAVE_WRITE_FAILED;
+        case MALFORMED_CSV_RECORD:
+            return ERROR_MALFORMED_CSV_RECORD;
         }
         return "";
     }
