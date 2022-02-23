@@ -23,17 +23,19 @@ public class Storage {
     // String Constants
     private static final String PATH_STRING_DATA_FOLDER = "data";
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-
-
+    private static final String MESSAGE_SAVE_FILE_CREATED = 
+            "As an old save file was not found, a new save file has been created at ";
+    
     // TODO: CREATE A TEST FOR LOAD
 
     /**
      * Checks if a save file already exist on the system
-     * If toCreate is true, creates the file structure and save file for saving TaskList data as it updates
+     * If toCreate is true, creates the file structure and save file for saving TaskList data as it updates,
+     * and returns true.
      *
      * @param toCreate Tells the method whether to create the files for saving or only to check if save exists
      * @return Returns true if the save file exists, false otherwise
-     * @throws IOException If File.exists(), File.mkdir(), File.createNewFile() faces exceptions.
+     * @throws IOException If File IO methods, File.exists(), File.mkdir(), File.createNewFile(), faces exceptions.
      */
     private boolean saveExists(boolean toCreate) throws IOException {
         File directory = new File(PATH_STRING_DATA_FOLDER);
@@ -59,6 +61,7 @@ public class Storage {
                 ui.printError(Display.ErrorType.FILE_CREATION_FAILED);
                 return false;
             }
+            ui.printlnMessage(MESSAGE_SAVE_FILE_CREATED + saveFile.getAbsolutePath());
         }
         return true;
     }
@@ -94,18 +97,19 @@ public class Storage {
         }
 
         String inputLine;
+        boolean hasEncounteredException = false;
         while (saveIn.hasNext()) {
             inputLine = saveIn.nextLine();
             String[] csvRecordEntries = inputLine.split(Duke.REGEX_PATTERN_CSV_DELIMITER);
             try {
                 tasks.addTaskFromCSVRecord(csvRecordEntries);
-            } catch (DukeException exception) {
-                ui.printlnMessage(exception.getMessage());
-                return;
-            } catch (DateTimeParseException exception) {
-                exception.printStackTrace();
-                return;
+            } catch (DukeException | DateTimeParseException exception) {
+                hasEncounteredException = true;
             }
+        }
+        
+        if (hasEncounteredException) {
+            ui.printError(Display.ErrorType.MALFORMED_CSV_RECORD);
         }
     }
 
@@ -116,12 +120,16 @@ public class Storage {
      * @param tasks The TaskList object with which all tasks within would be saved from
      */
     public void saveChanges(TaskList tasks) {
-        boolean saveExists;
+        boolean saveExists = false;
         try {
             saveExists = saveExists(true);
         } catch (IOException exception) {
             exception.printStackTrace();
             ui.printError(Display.ErrorType.FILE_CREATION_FAILED);
+        }
+        
+        if (!saveExists) {
+            return;
         }
 
         FileWriter fw;
