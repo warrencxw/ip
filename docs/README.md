@@ -25,6 +25,29 @@ As Duke is a CLI application, it can help you manage your tasks much faster if y
 ---
 
 ## Features 
+> **Notes regarding the command format:**
+> - Words in `<ANGLE BRACKETS>` are parameters to be supplied by the user<br>
+>   e.g. in `find <SUBSTRING>`, `<SUBSTRING>` is a parameter which can be replaced as in `find coding assignment`.
+> - Parameters, when given to commands that do not accept parameters (e.g. `list`, `help`) will be ignored.<br>
+>   e.g. an input of `list apple` will be interpreted as just `list`
+> - Aliases are alternative ways to perform the same command, and can be used to replace the command word.
+> - Commas are ***not*** allowed to be used in any of the parameters.
+### List of Features
+- [Listing all tasks](#listing-all-tasks--list) `list`
+- [Displaying the help menu](#displaying-the-help-menu--help) `help`
+- [Creating a todo task](#creating-a-simple-todo-task--todo) `todo`
+- [Creating an event task](#creating-an-event-task--event) `event`
+- [Creating a deadline task](#creating-a-deadline-task--deadline) `deadline`
+- [Marking a task as complete](#marking-a-task-as-complete--mark) `mark`
+- [Marking a task as incomplete](#marking-a-task-as-incomplete--unmark) `unmark`
+- [Finding a task](#finding-a-task-by-searching-with-substring--find) `find`
+- [Displaying help menu](#displaying-the-help-menu--help) `help`
+- [Deleting a task](#deleting-a-single-task--delete) `delete`
+- [Clearing all tasks](#clearing-all-tasks--clear) `clear`
+- [Exiting the application](#exiting-the-application--bye) `bye`
+- [Saving data](#saving-data)
+- [Loading data](#loading-data)
+- [Editing the save file](#editing-the-save-file)
 
 ### Feature-ABC
 
