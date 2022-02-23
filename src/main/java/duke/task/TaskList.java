@@ -40,6 +40,9 @@ public class TaskList {
     private static final int TODO_RECORD_LENGTH = 3;
     private static final int DEADLINE_EVENT_RECORD_LENGTH = 4;
 
+    // Miscellaneous Constants
+    private static final int ONE_INDEXING_MODIFIER = 1;
+
     /**
      * Returns the String pattern that identifies the additional parameters of the
      * type of task specified in the argument.
@@ -99,7 +102,7 @@ public class TaskList {
     public String toString() {
         StringBuilder taskListString = new StringBuilder("| Task List |");
         for (int i = 0; i < tasks.size(); i++) {
-            taskListString.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
+            taskListString.append("\n" + (i + ONE_INDEXING_MODIFIER) + ". " + tasks.get(i).toString());
         }
         return taskListString.toString();
     }
@@ -152,32 +155,35 @@ public class TaskList {
             throw new DukeException(Display.getErrorMessage(Display.ErrorType.MALFORMED_CSV_RECORD));
         }
 
-        // REFERENCE: record = { taskType {T,E,D}, marked {Y,N}, name, dueDate/eventTime(if D/E)}
-        boolean marked = record[1].equalsIgnoreCase("Y");
+        final String RECORD_TASK_TYPE = record[0];
+        final String RECORD_IS_MARKED = record[1];
+        final String RECORD_TASK_DESCRIPTION = record[2];
+        final int RECORD_DATE_INDEX = 3;
+        boolean marked = RECORD_IS_MARKED.equalsIgnoreCase("Y");
         LocalDate date;
-        switch (record[0]) {
+        switch (RECORD_TASK_TYPE) {
         case "T":
-            tasks.add(new Todo(record[2], marked));
+            tasks.add(new Todo(RECORD_TASK_DESCRIPTION, marked));
             break;
         case "E":
-            date = LocalDate.parse(record[3]);
-            tasks.add(new Event(record[2], marked, date));
+            date = LocalDate.parse(record[RECORD_DATE_INDEX]);
+            tasks.add(new Event(RECORD_TASK_DESCRIPTION, marked, date));
             break;
         case "D":
-            date = LocalDate.parse(record[3]);
-            tasks.add(new Deadline(record[2], marked, date));
+            date = LocalDate.parse(record[RECORD_DATE_INDEX]);
+            tasks.add(new Deadline(RECORD_TASK_DESCRIPTION, marked, date));
             break;
         default:
             throw new DukeException(Display.getErrorMessage(Display.ErrorType.MALFORMED_CSV_RECORD));
         }
     }
-    
+
     public String findTasksByString(String substring) {
         StringBuilder resultString = new StringBuilder("| Matching Tasks |");
         int totalCount = 0;
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).containsString(substring)) {
-                resultString.append("\n" + (i + 1) + ". " + tasks.get(i).toString());
+                resultString.append("\n" + (i + ONE_INDEXING_MODIFIER) + ". " + tasks.get(i).toString());
                 totalCount += 1;
             }
         }
