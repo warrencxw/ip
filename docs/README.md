@@ -151,20 +151,17 @@ Advanced users are welcome to update data directly by editing the save file.
 
 ---
 
-## Usage
-
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+## Command Summary
+| **Command**   | **Format and Examples**                                                          |  **Aliases**   |
+|:--------------|:---------------------------------------------------------------------------------|:--------------:|
+| **list**      | `list`                                                                           |       -        |
+| **todo**      | `todo <DESCRIPTION>`               <br> (e.g.`todo Do dishes`)                   |       -        |
+| **event**     | `event <DESCRIPTION> /at <DATE>`   <br> (e.g.`event Cat's Day /at 2022-02-22`)   |       -        |
+| **deadline**  | `deadline <DESCRIPTION> /by <DATE>`<br> (e.g.`Submit assignment /by 2022-03-08`) |       -        |
+| **mark**      | `mark <TASK NUMBER>`               <br> (e.g. `mark 4`)                          |       -        |
+| **unmark**    | `unmark <TASK NUMBER>`             <br> (e.g. `unmark 2`)                        |       -        |
+| **find**      | `find <SUBSTRING>`                 <br> (e.g. `find work`)                       |       -        |
+| **help**      | `help`                                                                           |       ?        |
+| **delete**    | `delete <TASK NUMBER>`             <br> (e.g. `delete 3`)                        |    `remove`    |
+| **clear**     | `clear`                                                                          |       -        |
+| **bye**       | `bye`                                                                            | `quit`, `exit` |
