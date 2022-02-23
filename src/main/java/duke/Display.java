@@ -111,9 +111,11 @@ public class Display {
                     + "        Lists tasks that contain <substring> in their name.\n"
                     + "  8. help / ?\n"
                     + "        Displays this help menu.\n"
-                    + "  9. clear\n"
+                    + "  9. delete <task entry number>\n"
+                    + "        Deletes a task entry, see list for entry numbers.\n"
+                    + "  10. clear\n"
                     + "        Clears all tasks that have been saved thus far after a confirmation message.\n"
-                    + "  10. bye / exit / quit\n"
+                    + "  11. bye / exit / quit\n"
                     + "        Displays the farewell message and closes the application.";
 
     /**
