@@ -25,18 +25,21 @@ import java.time.format.DateTimeParseException;
 public class Parser {
     // Regex patterns
     public static final String REGEX_PATTERN_WHITESPACES = "\\s";
+    
+    // Constants
+    public static final int ARGUMENT_SPLIT_SIZE = 2;
 
     /**
      * Processes the input to be split into a String array of { commandString, commandArgs }, separated by spaces.
      * commandArgs is set to "" if not provided, where input is only a single token and not separated by spaces.
      *
      * @param input input string from the command line
-     * @return String array of size 2 containing { commandString, commandArgs }
+     * @return String array of size 2 (ARGUMENT_SPLIT_SIZE) containing { commandString, commandArgs }
      */
     private static String[] getArguments(String input) {
-        String[] inputs = input.split(REGEX_PATTERN_WHITESPACES, 2);
+        String[] inputs = input.split(REGEX_PATTERN_WHITESPACES, ARGUMENT_SPLIT_SIZE);
         String[] output = new String[]{inputs[0], ""};
-        if (inputs.length < 2) {
+        if (inputs.length < ARGUMENT_SPLIT_SIZE) {
             return output;
         }
         output[1] = inputs[1];
@@ -118,7 +121,7 @@ public class Parser {
         case "":
             return new EmptyCommand();
         // DISPLAY HELP MENU, FALLTHROUGH : IDENTICAL COMMAND
-        case "?":
+        case "?": // Fallthrough
         case "help":
             return new HelpCommand();
         // LIST OUT TASK LIST
@@ -142,14 +145,14 @@ public class Parser {
         case "find":
             return new FindCommand(commandArgs);
         // DELETE TASK, FALLTHROUGH : IDENTICAL COMMANDS
-        case "delete":
+        case "delete": // Fallthrough
         case "remove":
             return new DeleteCommand(commandArgs);
         case "clear":
             return new ClearCommand();
         // CONCLUDE SESSION, FALLTHROUGH : IDENTICAL COMMANDS
-        case "exit":
-        case "quit":
+        case "exit": // Fallthrough
+        case "quit": // Fallthrough
         case "bye":
             return new ExitCommand();
         // UNRECOGNISED INPUT

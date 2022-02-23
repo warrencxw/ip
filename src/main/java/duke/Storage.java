@@ -49,7 +49,6 @@ public class Storage {
             }
         }
 
-
         if (!saveFile.exists()) {
             if (!toCreate) {
                 return false;
