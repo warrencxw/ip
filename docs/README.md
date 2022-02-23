@@ -49,13 +49,107 @@ As Duke is a CLI application, it can help you manage your tasks much faster if y
 - [Loading data](#loading-data)
 - [Editing the save file](#editing-the-save-file)
 
-### Feature-ABC
+---
 
-Description of the feature.
+### Listing all tasks : `list`
+Shows a list of all tasks saved in the application.
+#### Format: `list`
 
-### Feature-XYZ
+### Creating a simple todo task : `todo`
+Creates a simple todo task and adds it into the application.
+#### Format: `todo <DESCRIPTION>`
+#### Examples
+- `todo Do dishes`
+- `todo Help to settle grocery shopping`
 
-Description of the feature.
+### Creating an event task : `event`
+Creates an event entry that occurs at a specific date.
+#### Format: `event <DESCRIPTION> /at <DATE>`
+- Note that `<DATE>` must be a valid date in the format `YYYY-MM-DD`, 
+  where `February 22, 2022` would be represented as `2022-02-22`
+#### Examples
+- `event Cat's Day /at 2022-02-22`
+- `event Mother's Day /at 2022-05-08`
+
+### Creating a deadline task : `deadline`
+Creates a task with a specified deadline by a specific date.
+#### Format: `deadline <DESCRIPTION> /by <DATE>`
+- Note that `<DATE>` must be a valid date in the format `YYYY-MM-DD`,
+  where `February 22, 2022` would be represented as `2022-02-22`
+#### Examples
+- `deadline Submit assignment /by 2022-03-08`
+- `deadline Submit final version of iP /by 2022-03-04`
+
+### Marking a task as complete : `mark`
+Marks a task in the task list as shown in [`list`](#listing-all-tasks--list) as completed.
+#### Format: `mark <TASK NUMBER>`
+- Note that `<TASK NUMBER>` must be a positive integer corresponding to a task
+  as shown in the [`list`](#listing-all-tasks--list) command.
+#### Example
+- `mark 4` Marks the fourth task in the list as done (assuming there are at least 4 tasks in the list)
+
+### Marking a task as incomplete : `unmark`
+Marks a task in the task list as shown in [`list`](#listing-all-tasks--list) as incomplete.
+#### Format: `unmark <TASK NUMBER>`
+- Note that `<TASK NUMBER>` must be a positive integer corresponding to a task
+  as shown in the [`list`](#listing-all-tasks--list) command.
+#### Example
+- `unmark 2` Marks the second task in the list as incomplete (assuming there are at least 2 tasks in the list)
+
+### Finding a task by searching with substring : `find`
+Searches the task list for all tasks with descriptions that contain a specified substring.
+#### Format: `find <SUBSTRING>`
+- Note that the substring to search with is **case-sensitive**,
+  meaning that a task named `Homework` cannot be found with `homework`.
+#### Example
+- `find work` Searches the entire list for tasks with descriptions containing `work`,
+  a task named `Homework` would be listed in the output.
+
+### Displaying the help menu : `help`
+Shows a help menu containing a list of all available commands, their syntax and short descriptions of what they do.
+#### Format: `help`
+- Aliases: `?`
+
+### Deleting a single task : `delete`
+Deletes a task in the task list as shown in [`list`](#listing-all-tasks--list).
+#### Format: `delete <TASK NUMBER>`
+- Note that `<TASK NUMBER>` must be a positive integer corresponding to a task
+  as shown in the [`list`](#listing-all-tasks--list) command.
+- After deletion, tasks with task numbers after the deleted task in the task list would be shifted up;
+  another task may take over the task number of the deleted task.
+- Aliases: `remove <TASK NUMBER>`
+#### Example
+- `remove 3` Deletes the third task in the list as incomplete (assuming there are at least 3 tasks in the list)
+
+### Clearing all tasks : `clear`
+Deletes all tasks that are currently in the task list after a warning message.
+The tasks will only be deleted after you confirm the deletion as shown below.
+<!-- show image -->
+#### Format: `clear`
+
+### Exiting the application : `bye`
+Prints a farewell message before terminating the application and saving all changes to the save file.
+#### Format: `bye`
+- Aliases: `quit`, `exit`
+
+### Saving data
+Duke automatically saves all data whenever any modification is made to the task list.
+There is no need to save manually.
+
+### Loading data
+Duke automatically loads a save file named `save.csv` located in the `data` folder
+in the _home folder_ of the application (`[home folder]/data/save.csv`), if it exists.
+Otherwise, a new save file is created and worked with.
+
+### Editing the save file
+All data from Duke is saved as a single Comma-Separated Values (CSV) file.
+Advanced users are welcome to update data directly by editing the save file.
+> **Caution:** If any changes were to make the format of any entries invalid,
+> the entries would be ignored by the program and not be loaded.<br><br>
+> **Guideline:** Check using the `list` command that edited entries are properly loaded
+> before performing any commands that may edit the task list, so that affected entries are not overwritten.
+
+---
 
 ## Usage
 
