@@ -25,8 +25,6 @@ public class Storage {
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
     private static final String MESSAGE_SAVE_FILE_CREATED = 
             "As an old save file was not found, a new save file has been created at ";
-    
-    // TODO: CREATE A TEST FOR LOAD
 
     /**
      * Checks if a save file already exist on the system

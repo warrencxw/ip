@@ -1,0 +1,437 @@
+____________________________________________________________
+                      /|      __
+*             +      / |   ,-~ /             +
+     .              Y :|  //  /                .         *
+         .          | jj /( .^     *
+               *    >-"~"-v"              .        *        .
+*                  /       Y
+   .     .        jo  o    |     .            +
+                 ( ~T~     j                     +     .
+      +           >._-' _./         +
+               /| ;-"~ _  l
+  .           / l/ ,-"~    \     +
+              \//\/      .- \
+       +       Y        /    Y
+               l       I     !
+               ]\      _\    /"\
+              (" ~----( ~   Y.  )
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+____________________________________________________________
+Hello,
+,--.   ,--.
+|  |   |  | ,--,--.,--.--.,--.--. ,---. ,--,--,
+|  |.'.|  |' ,-.  ||  .--'|  .--'| .-. :|      \
+|   ,'.   |\ '-'  ||  |   |  |   \   --.|  ||  |
+'--'   '--' `--`--'`--'   `--'    `----'`--''--'
+What can I do for you? (enter 'help' for available commands!)
+____________________________________________________________
+ > ____________________________________________________________
+Are you really sure you want to delete all available tasks? Type 'Y' to confirm.
+Deletion has been aborted.
+____________________________________________________________
+ > ____________________________________________________________
+Are you really sure you want to delete all available tasks? Type 'Y' to confirm.
+All tasks have been cleared.
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+The task list is empty!
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+The task list is empty!
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+The task list is empty!
+____________________________________________________________
+ > ____________________________________________________________
+| Matching Tasks |
+There are 0 matches.
+____________________________________________________________
+ > ____________________________________________________________
+Todo "test1" has been added.
+ > [T][ ] test1
+____________________________________________________________
+ > ____________________________________________________________
+Todo "test1 test2" has been added.
+ > [T][ ] test1 test2
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a task number.
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a task number.
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a time range for the event with the delimiter "/at"
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a time range for the event with the delimiter "/at"
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify the date in a valid format as follows.
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify the date in a valid format as follows.
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Event "test3 test4" has been added.
+ > [E][ ] test3 test4 (happening at: 28 FEBRUARY 2022)
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][ ] test3 test4 (happening at: 28 FEBRUARY 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as done!
+> 3. [E][X] test3 test4 (happening at: 28 FEBRUARY 2022)
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 3
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 3
+____________________________________________________________
+ > ____________________________________________________________
+Please specify the date in a valid format as follows.
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Event "test3" has been added.
+ > [E][ ] test3 (happening at: 2 MARCH 2022)
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: 28 FEBRUARY 2022)
+4. [E][ ] test3 (happening at: 2 MARCH 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as done!
+> 4. [E][X] test3 (happening at: 2 MARCH 2022)
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a time range for the event with the delimiter "/at"
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: 28 FEBRUARY 2022)
+4. [E][X] test3 (happening at: 2 MARCH 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as not done!
+> 4. [E][ ] test3 (happening at: 2 MARCH 2022)
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: 28 FEBRUARY 2022)
+4. [E][ ] test3 (happening at: 2 MARCH 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a deadline for the task with the delimiter "/by"
+SYNTAX: deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a deadline for the task with the delimiter "/by"
+SYNTAX: deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify the date in a valid format as follows.
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Deadline "test9 test10" has been added.
+ > [D][ ] test9 test10 (due: 20 OCTOBER 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a deadline for the task with the delimiter "/by"
+SYNTAX: deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify the date in a valid format as follows.
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Deadline "test9 test10" has been added.
+ > [D][ ] test9 test10 (due: 15 DECEMBER 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a name for your task.
+SYNTAX: todo <todo name>
+        event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a deadline for the task with the delimiter "/by"
+SYNTAX: deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+Deadline "test12" has been added.
+ > [D][ ] test12 (due: 3 APRIL 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Please specify the date in a valid format as follows.
+SYNTAX: event <event name> /at <YYYY-MM-DD>
+        deadline <deadline name> /by <YYYY-MM-DD>
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: 28 FEBRUARY 2022)
+4. [E][ ] test3 (happening at: 2 MARCH 2022)
+5. [D][ ] test9 test10 (due: 20 OCTOBER 2022)
+6. [D][ ] test9 test10 (due: 15 DECEMBER 2022)
+7. [D][ ] test12 (due: 3 APRIL 2022)
+____________________________________________________________
+ > ____________________________________________________________
+| AVAILABLE COMMANDS |
+  1. list
+        Displays the full list of tasks that have been saved.
+  2. todo <task name>
+        Creates a new todo list entry.
+  3. event <event name> /at <YYYY-MM-DD>
+        Creates a new event entry with its accompanying time of occurrence.
+  4. deadline <deadline name> /by <YYYY-MM-DD>
+        Creates a new deadline entry with its accompanying due date.
+  5. mark <task entry number>
+        Marks the entry as done, see list for entry numbers.
+  6. unmark <task entry number>
+        Marks the entry as incomplete, see list for entry numbers.
+  7. find <substring>
+        Lists tasks that contain <substring> in their name.
+  8. help / ?
+        Displays this help menu.
+  9. delete <task entry number>
+        Deletes a task entry, see list for entry numbers.
+  10. clear
+        Clears all tasks that have been saved thus far after a confirmation message.
+  11. bye / exit / quit
+        Displays the farewell message and closes the application.
+____________________________________________________________
+ > ____________________________________________________________
+| AVAILABLE COMMANDS |
+  1. list
+        Displays the full list of tasks that have been saved.
+  2. todo <task name>
+        Creates a new todo list entry.
+  3. event <event name> /at <YYYY-MM-DD>
+        Creates a new event entry with its accompanying time of occurrence.
+  4. deadline <deadline name> /by <YYYY-MM-DD>
+        Creates a new deadline entry with its accompanying due date.
+  5. mark <task entry number>
+        Marks the entry as done, see list for entry numbers.
+  6. unmark <task entry number>
+        Marks the entry as incomplete, see list for entry numbers.
+  7. find <substring>
+        Lists tasks that contain <substring> in their name.
+  8. help / ?
+        Displays this help menu.
+  9. delete <task entry number>
+        Deletes a task entry, see list for entry numbers.
+  10. clear
+        Clears all tasks that have been saved thus far after a confirmation message.
+  11. bye / exit / quit
+        Displays the farewell message and closes the application.
+____________________________________________________________
+ > ____________________________________________________________
+| AVAILABLE COMMANDS |
+  1. list
+        Displays the full list of tasks that have been saved.
+  2. todo <task name>
+        Creates a new todo list entry.
+  3. event <event name> /at <YYYY-MM-DD>
+        Creates a new event entry with its accompanying time of occurrence.
+  4. deadline <deadline name> /by <YYYY-MM-DD>
+        Creates a new deadline entry with its accompanying due date.
+  5. mark <task entry number>
+        Marks the entry as done, see list for entry numbers.
+  6. unmark <task entry number>
+        Marks the entry as incomplete, see list for entry numbers.
+  7. find <substring>
+        Lists tasks that contain <substring> in their name.
+  8. help / ?
+        Displays this help menu.
+  9. delete <task entry number>
+        Deletes a task entry, see list for entry numbers.
+  10. clear
+        Clears all tasks that have been saved thus far after a confirmation message.
+  11. bye / exit / quit
+        Displays the farewell message and closes the application.
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a task number.
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 7
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 7
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 7
+____________________________________________________________
+ > ____________________________________________________________
+I have removed the following task for you:
+> 7. [D][ ] test12 (due: 3 APRIL 2022)
+You now have 6 tasks in your list.
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: 28 FEBRUARY 2022)
+4. [E][ ] test3 (happening at: 2 MARCH 2022)
+5. [D][ ] test9 test10 (due: 20 OCTOBER 2022)
+6. [D][ ] test9 test10 (due: 15 DECEMBER 2022)
+____________________________________________________________
+ > ____________________________________________________________
+I have removed the following task for you:
+> 3. [E][X] test3 test4 (happening at: 28 FEBRUARY 2022)
+You now have 5 tasks in your list.
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][ ] test3 (happening at: 2 MARCH 2022)
+4. [D][ ] test9 test10 (due: 20 OCTOBER 2022)
+5. [D][ ] test9 test10 (due: 15 DECEMBER 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as done!
+> 2. [T][X] test1 test2
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][X] test1 test2
+3. [E][ ] test3 (happening at: 2 MARCH 2022)
+4. [D][ ] test9 test10 (due: 20 OCTOBER 2022)
+5. [D][ ] test9 test10 (due: 15 DECEMBER 2022)
+____________________________________________________________
+ > ____________________________________________________________
+Please enter a command below. Enter 'help' to see available commands.
+____________________________________________________________
+ > ____________________________________________________________
+The input that you have entered is not recognised, enter 'help' to see available commands.
+____________________________________________________________
+ > ____________________________________________________________
+| Matching Tasks |
+1. [T][ ] test1
+2. [T][X] test1 test2
+4. [D][ ] test9 test10 (due: 20 OCTOBER 2022)
+5. [D][ ] test9 test10 (due: 15 DECEMBER 2022)
+There are 4 matches.
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a substring to search the task list with.
+SYNTAX: find <substring>
+____________________________________________________________
+ > ____________________________________________________________
+| Matching Tasks |
+There are 0 matches.
+____________________________________________________________
+ > ____________________________________________________________
+| Matching Tasks |
+3. [E][ ] test3 (happening at: 2 MARCH 2022)
+There are 1 matches.
+____________________________________________________________
+ > ____________________________________________________________
+| Matching Tasks |
+4. [D][ ] test9 test10 (due: 20 OCTOBER 2022)
+5. [D][ ] test9 test10 (due: 15 DECEMBER 2022)
+There are 2 matches.
+____________________________________________________________
+ > ____________________________________________________________
+Bye. Hope to see you again soon!
+____________________________________________________________

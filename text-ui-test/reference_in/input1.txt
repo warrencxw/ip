@@ -5,6 +5,7 @@ Y
 mark 1
 unmark 1
 delete 3
+find test
 todo test1
 todo test1 test2
 list
@@ -17,11 +18,14 @@ event /at test3
 event at test3
 event test3 test4
 event test3 test4 /at test5 test6
+event test3 test4 /at 2022-02-29
+event test3 test4 /at 2022-02-28
 list
 mark 3
 mark 4
 mark 0
 event test3 /at test4 test5
+event test3 /at 2022-03-02
 list
 mark 4
 mark apple
@@ -34,14 +38,18 @@ list
 deadline test9 test10 /at test11
 deadline test9
 deadline test9 test10 /by test11 test12
+deadline test9 test10 /by 2022-10-20
 deadline test9 test10
 deadline test9 test10 /by test11
+deadline test9 test10 /by 2022-12-15
 deadline 
 deadline  
 deadline /by
 deadline /by test12 test13
+deadline /by 2022-04-03
 deadline test12 by test13
-deadline test12 /by test13 /by test14
+deadline test12 /by 2022-04-03
+deadline test12 /by 2022-04-03 /by 2010-10-03
 list
 help
 ? apple
@@ -56,4 +64,11 @@ delete 3
 list
 mark 2
 list
+
+apple
+find test1
+find 
+find 4
+find 3
+find test9
 bye

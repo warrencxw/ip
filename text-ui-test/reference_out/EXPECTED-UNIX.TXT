@@ -1,0 +1,205 @@
+____________________________________________________________
+                      /|      __
+*             +      / |   ,-~ /             +
+     .              Y :|  //  /                .         *
+         .          | jj /( .^     *
+               *    >-"~"-v"              .        *        .
+*                  /       Y
+   .     .        jo  o    |     .            +
+                 ( ~T~     j                     +     .
+      +           >._-' _./         +
+               /| ;-"~ _  l
+  .           / l/ ,-"~    \     +
+              \//\/      .- \
+       +       Y        /    Y
+               l       I     !
+               ]\      _\    /"\
+              (" ~----( ~   Y.  )
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+____________________________________________________________
+Hello,
+,--.   ,--.
+|  |   |  | ,--,--.,--.--.,--.--. ,---. ,--,--,
+|  |.'.|  |' ,-.  ||  .--'|  .--'| .-. :|      \
+|   ,'.   |\ '-'  ||  |   |  |   \   --.|  ||  |
+'--'   '--' `--`--'`--'   `--'    `----'`--''--'
+What can I do for you? (enter 'hello' for available commands!)
+____________________________________________________________
+ > ____________________________________________________________
+Todo "test1" has been added.
+ > [T][ ] test1
+____________________________________________________________
+ > ____________________________________________________________
+Todo "test1 test2" has been added.
+ > [T][ ] test1 test2
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a time range for the event with the delimiter "/at"
+SYNTAX: event <event name> /at <time range>
+____________________________________________________________
+ > ____________________________________________________________
+Event "test3 test4" has been added.
+ > [E][ ] test3 test4 (happening at: test5 test6)
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][ ] test3 test4 (happening at: test5 test6)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as done!
+> 3. [E][X] test3 test4 (happening at: test5 test6)
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 3
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 3
+____________________________________________________________
+ > ____________________________________________________________
+Event "test3" has been added.
+ > [E][ ] test3 (happening at: test4 test5)
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: test5 test6)
+4. [E][ ] test3 (happening at: test4 test5)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as done!
+> 4. [E][X] test3 (happening at: test4 test5)
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a time range for the event with the delimiter "/at"
+SYNTAX: event <event name> /at <time range>
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: test5 test6)
+4. [E][X] test3 (happening at: test4 test5)
+____________________________________________________________
+ > ____________________________________________________________
+Your task is now marked as not done!
+> 4. [E][ ] test3 (happening at: test4 test5)
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
+The input task number you have entered is invalid.
+Please enter a value between 1 and 4
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: test5 test6)
+4. [E][ ] test3 (happening at: test4 test5)
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a deadline for the task with the delimiter "/by"
+SYNTAX: deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a deadline for the task with the delimiter "/by"
+SYNTAX: deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Deadline "test9 test10" has been added.
+ > [D][ ] test9 test10 (due: test11 test12)
+____________________________________________________________
+ > ____________________________________________________________
+Please specify a deadline for the task with the delimiter "/by"
+SYNTAX: deadline <deadline name> /by <due date>
+____________________________________________________________
+ > ____________________________________________________________
+Deadline "test9 test10" has been added.
+ > [D][ ] test9 test10 (due: test11)
+____________________________________________________________
+ > ____________________________________________________________
+| Task List |
+1. [T][ ] test1
+2. [T][ ] test1 test2
+3. [E][X] test3 test4 (happening at: test5 test6)
+4. [E][ ] test3 (happening at: test4 test5)
+5. [D][ ] test9 test10 (due: test11 test12)
+6. [D][ ] test9 test10 (due: test11)
+____________________________________________________________
+ > ____________________________________________________________
+| AVAILABLE COMMANDS |
+  1. list
+        Displays the full list of tasks that have been saved.
+  2. todo <task name>
+        Creates a new todo list entry.
+  3. event <event name> /at <time range>
+        Creates a new event entry with its accompanying time of occurrence.
+  4. deadline <deadline name> /by <due date>
+        Creates a new deadline entry with its accompanying due date.
+  5. mark <task entry number>
+        Marks the entry as done, see list for entry numbers.
+  6. unmark <task entry number>
+        Marks the entry as incomplete, see list for entry numbers.
+  7. help / ?
+        Displays this help menu.
+  8. bye
+        Displays the farewell message and closes the application.
+____________________________________________________________
+ > ____________________________________________________________
+| AVAILABLE COMMANDS |
+  1. list
+        Displays the full list of tasks that have been saved.
+  2. todo <task name>
+        Creates a new todo list entry.
+  3. event <event name> /at <time range>
+        Creates a new event entry with its accompanying time of occurrence.
+  4. deadline <deadline name> /by <due date>
+        Creates a new deadline entry with its accompanying due date.
+  5. mark <task entry number>
+        Marks the entry as done, see list for entry numbers.
+  6. unmark <task entry number>
+        Marks the entry as incomplete, see list for entry numbers.
+  7. help / ?
+        Displays this help menu.
+  8. bye
+        Displays the farewell message and closes the application.
+____________________________________________________________
+ > ____________________________________________________________
+| AVAILABLE COMMANDS |
+  1. list
+        Displays the full list of tasks that have been saved.
+  2. todo <task name>
+        Creates a new todo list entry.
+  3. event <event name> /at <time range>
+        Creates a new event entry with its accompanying time of occurrence.
+  4. deadline <deadline name> /by <due date>
+        Creates a new deadline entry with its accompanying due date.
+  5. mark <task entry number>
+        Marks the entry as done, see list for entry numbers.
+  6. unmark <task entry number>
+        Marks the entry as incomplete, see list for entry numbers.
+  7. help / ?
+        Displays this help menu.
+  8. bye
+        Displays the farewell message and closes the application.
+____________________________________________________________
+ > ____________________________________________________________
+Bye. Hope to see you again soon!
+____________________________________________________________
