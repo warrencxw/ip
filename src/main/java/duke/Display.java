@@ -24,7 +24,7 @@ public class Display {
     private static final String ERROR_INVALID_TASK_NO =
             "The input task number you have entered is invalid.";
     private static final String ERROR_EMPTY_INPUT =
-            "Please enter either a task to do, mark/unmark <task number> or list";
+            "Please enter a command below. Enter 'help' to see available commands.";
     private static final String ERROR_EMPTY_TASK_NAME =
             "Please enter a name for your task.\n"
                     + "SYNTAX: todo <todo name>\n"
